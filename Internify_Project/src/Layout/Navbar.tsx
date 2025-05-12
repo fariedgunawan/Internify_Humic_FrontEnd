@@ -17,7 +17,7 @@ const Navbar = () => {
       <div className="logo-section font-semibold text-[25px]">
         <img src={humiclogo} className="w-[150px]" alt="" />
       </div>
-      <div className="list-section text-[20px] flex flex-row items-center gap-6 relative">
+      <div className="list-section text-[20px] font-semibold flex flex-row items-center gap-6 relative">
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">About Us</h2>
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Contact Us</h2>
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Internship</h2>
