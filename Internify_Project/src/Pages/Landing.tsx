@@ -1,4 +1,5 @@
 import Navbar from "../Layout/Navbar";
+import team from "../assets/teamwokr.jpg";
 
 const Landing = () => {
   return (
@@ -32,6 +33,25 @@ const Landing = () => {
               </svg>
             </form>
           </div>
+        </div>
+      </div>
+      {/* Hero 2 section */}
+      <div className="hero2-section flex flex-row items-center mx-[20px] mt-[50px] rounded-2xl justify-between overflow-hidden relative">
+        {/* Text Section */}
+        <div className="text-section w-[700px] z-10 px-[30px] py-[40px]">
+          <h2 className="font-bold text-[32px] mb-4">Life at Humic Engineering</h2>
+          <p className="font-medium text-[16px]">
+            Raih pengalaman internship yang bernilai dengan berkontribusi langsung dalam pengembangan solusi teknologi kami. Kembangkan kompetensi Anda melalui keterlibatan nyata dalam proyek IT serta bimbingan langsung dari para expert di
+            bidang Software engineering dan IoT.
+          </p>
+        </div>
+
+        {/* Image Section with Gradient */}
+        <div className="image-section w-[70rem] h-full relative">
+          <img src={team} alt="Team" className="w-full h-full object-cover" />
+
+          {/* Gradient Overlay */}
+          <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-[#F8F9FA] via-white/60 to-transparent"></div>
         </div>
       </div>
     </div>
