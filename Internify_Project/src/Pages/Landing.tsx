@@ -1,5 +1,14 @@
 import Navbar from "../Layout/Navbar";
 import team from "../assets/teamwokr.jpg";
+import person1 from "../assets/person1.png";
+import person2 from "../assets/person2.png";
+import person3 from "../assets/person3.png";
+import person4 from "../assets/person4.png";
+import cardimage from "../assets/card.png";
+import bghero1 from "../assets/hero1.png";
+import Footer from "../Layout/Footer";
+import Faq from "../Layout/Faq";
+
 
 const Landing = () => {
   return (
@@ -11,7 +20,7 @@ const Landing = () => {
       <div
         className="hero-section relative flex flex-col items-start justify-center h-[350px] mx-[20px] mt-[20px] rounded-2xl overflow-hidden p-[30px] text-white"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1463725876303-ff840e2aa8d5?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+          backgroundImage: `url(${bghero1})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -54,6 +63,71 @@ const Landing = () => {
           <div className="absolute left-0 top-0 w-full h-full bg-gradient-to-r from-[#F8F9FA] via-white/60 to-transparent"></div>
         </div>
       </div>
+      {/* Hero 3 Section */}
+      <div className="hero-3-section flex flex-row items-center justify-between mx-[200px] mt-[60px] relative">
+        <div className="relative w-[550px] h-[600px]">
+          {/* Tengah (gambar besar) */}
+          <img src={person1} alt="" className="absolute top-1/2 left-1/2 w-60 h-80 object-cover rounded-lg shadow-lg transform -translate-x-1/2 -translate-y-1/2 z-10" />
+
+          {/* Kanan atas */}
+          <img src={person4} alt="" className="absolute top-6 right-6 w-38 h-46 object-cover rounded-lg shadow-md z-20" />
+
+          {/* Kiri atas */}
+          <img src={person3} alt="" className="absolute top-0 left-0 w-34 h-42 object-cover rounded-lg shadow-md z-30" />
+
+          {/* Kiri bawah */}
+          <img src={person2} alt="" className="absolute bottom-4 left-6 w-38 h-46 object-cover rounded-lg shadow-md z-40" />
+        </div>
+
+        <div className="content-section flex flex-col items-start w-[650px]">
+          <h2 className="font-bold text-[32px]">Kata mereka tentang Humic Engineering</h2>
+          <p className="font-medium text-[16px] mt-[16px]">
+            Humic engineering menjadi tempat yang menyenangkan bagi saya, karena dapat meningkatkan kemampuan saya dalam melakukan desain UI/UX. Banyak pembelajaran yang berharga serta memiliki lingkungan yang suportif
+          </p>
+          <p className="text-[16px] text-[#C3423F] font-bold mt-[20px]">Indra, Humic Internship Batch 3 2025 </p>
+        </div>
+      </div>
+
+      {/*Hero 4 Section  */}
+      <div className="hero4-section flex flex-col justify-center items-center mt-[50px]">
+        {/* Title section */}
+        <h2 className="font-bold text-[32px] flex justify-center">Jelajahi posisi yang kamu inginkan</h2>
+
+        {/* Card Section */}
+        <div className="card-container mt-[110px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-[100px] mx-[10px]">
+          {[...Array(8)].map((_, index) => (
+            <div key={index} className="relative w-64 h-64 rounded-xl overflow-hidden shadow-lg">
+              {/* Background Image */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${cardimage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              />
+
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60" />
+
+              {/* Text Content */}
+              <div className="relative z-10 flex flex-col justify-end h-full p-4 text-white">
+                <div className="font-semibold text-[20px] leading-[50px]">
+                  Backend
+                  <br />
+                  Developer
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Hero 5 Section FaQ */}
+      <Faq />
+
+      {/* footer section */}
+      <Footer />
     </div>
   );
 };
