@@ -5,6 +5,7 @@
   src: url(PlusJakartaSans-VariableFont_wght.ttf);
 }
 
-@theme{
-  --font-jakarta : JakartaSans, "sans-serif";
+:root {
+  font-family: JakartaSans, sans-serif;
+  color: black;
 }
