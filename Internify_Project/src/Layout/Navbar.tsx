@@ -2,6 +2,7 @@ import { useState } from "react";
 import englishflag from "../assets/english.png";
 import indonesiaflag from "../assets/indonesia.png";
 import humiclogo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [language, setLanguage] = useState("EN");
@@ -12,13 +13,16 @@ const Navbar = () => {
     setOpen(false);
   };
 
+  const navigate = useNavigate();
   return (
     <div className="body-navbar bg-[#D7E1E8] flex flex-row items-center justify-between px-[25px] mx-[20px] py-[25px] rounded-2xl shadow-md">
       <div className="logo-section font-semibold text-[25px]">
-        <img src={humiclogo} className="w-[150px]" alt="" />
+        <img src={humiclogo} onClick={() => navigate("/")} className="w-[150px]" alt="" />
       </div>
       <div className="list-section text-[20px] font-semibold flex flex-row items-center gap-6 relative">
-        <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">About Us</h2>
+        <h2 className="hover:text-blue-600 cursor-pointer transition duration-200" onClick={() => navigate("/AboutUs")}>
+          About Us
+        </h2>
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Contact Us</h2>
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Internship</h2>
 
