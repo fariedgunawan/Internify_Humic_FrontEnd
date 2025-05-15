@@ -41,9 +41,7 @@ const Faq = () => {
           <div key={index} className="bg-[#FAF0EF] shadow-md rounded-sm">
             <button onClick={() => toggleItem(index)} className="w-full flex items-center justify-between p-4 focus:outline-none">
               <span className="text-[16px] font-semibold text-left text-[#C3423F]">{faq.question}</span>
-              <svg className={`w-5 h-5 text-[#C3423F] transform transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              <span className="text-[20px] font-bold text-[#C3423F]">{openIndex === index ? "-" : "+"}</span>
             </button>
 
             <div className={`px-4 pb-4 text-black transition-all duration-300 ${openIndex === index ? "block" : "hidden"}`}>
