@@ -12,7 +12,7 @@ import Faq from "../Layout/Faq";
 
 const Landing = () => {
   return (
-    <div className="body-landing bg-[#F8F9FA] min-h-screen">
+    <div className="body-landing bg-[#F8F9FA] min-h-screen font-jakarta">
       <div className="navbar-section py-[20px]">
         <Navbar />
       </div>
