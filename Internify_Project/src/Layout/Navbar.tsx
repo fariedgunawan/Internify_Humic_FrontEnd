@@ -24,7 +24,9 @@ const Navbar = () => {
           About Us
         </h2>
         <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Contact Us</h2>
-        <h2 className="hover:text-blue-600 cursor-pointer transition duration-200">Internship</h2>
+        <h2 className="hover:text-blue-600 cursor-pointer transition duration-200" onClick={() => navigate("/Internships")}>
+          Internship
+        </h2>
 
         {/* Language Dropdown */}
         <div className="relative">

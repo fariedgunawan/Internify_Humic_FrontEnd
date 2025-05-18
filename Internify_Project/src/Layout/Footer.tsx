@@ -5,7 +5,7 @@ import { MdOutlineEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div className="footer-container flex flex-col px-[140px] bg-[#263742] mt-[150px] text-white pt-[60px] pb-[20px]">
+    <div className="footer-container flex flex-col px-[140px] bg-[#263742] mt-[60px] text-white pt-[60px] pb-[20px]">
       <div className="head-of-footer flex flex-row justify-between">
         {/* Right Section */}
         <div className="right-section flex flex-col items-start">
@@ -38,6 +38,7 @@ const Footer = () => {
             <p>Humic website</p>
             <p>Our Activity</p>
             <p>Life at Humic</p>
+            <p>Our developer</p>
           </div>
         </div>
       </div>

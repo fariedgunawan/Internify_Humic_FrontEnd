@@ -2,7 +2,13 @@ import Navbar from "../Layout/Navbar";
 import bghero1 from "../assets/hero2about.png";
 import bghero2 from "../assets/hero1about.png";
 import bghero3 from "../assets/hero3about.png";
+import part1 from "../assets/part1.png";
+import part2 from "../assets/part2.png";
+import part3 from "../assets/part3.png";
+import part4 from "../assets/part4.png";
+import part5 from "../assets/part5.png";
 import { useState } from "react";
+import Footer from "../Layout/Footer";
 
 const slides = [
   {
@@ -43,6 +49,11 @@ const AboutUs = () => {
   };
 
   const currentSlide = slides[currentIndex];
+
+  const items = Array(8).fill({
+    title: "Health IoT",
+    image: bghero2,
+  });
 
   return (
     <div className="body-of-aboutus bg-[#F8F9FA] min-h-screen">
@@ -96,6 +107,55 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+
+      {/* Hero Section 2 Partnership */}
+      <div className="hero-2-partnership bg-[#FAF0EF] justify-between flex flex-row mt-[50px] px-[80px] py-[80px]">
+        <div className="caption-hero-2 flex flex-col items-start w-[540px]">
+          <h2 className="font-bold text-[32px]">Partnership</h2>
+          <h2 className="font-normal text-[16px] mt-[8px]">Kami bersama-sama menciptakan solusi yang memberdayakan bisnis dan meningkatkan efisiensi operasional.</h2>
+        </div>
+        <div className="image-hero-2 flex flex-row items-center gap-[50px]">
+          <img src={part1} alt="" />
+          <img src={part2} alt="" />
+          <img src={part3} alt="" />
+          <img src={part4} alt="" />
+          <img src={part5} alt="" />
+        </div>
+      </div>
+
+      {/* Hero section 3  */}
+      <div className="hero-3-research-product mt-[50px]">
+        <div className="title-container flex flex-row justify-between px-[80px]">
+          <h2 className="font-bold text-[32px]">Hasil produk research</h2>
+          <div className="arrow-container flex flex-row items-center gap-10">
+            <div className="left bg-[#C3423F] p-3 rounded-[50%]">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-white">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>
+            </div>
+            <div className="right bg-[#C3423F] p-3 rounded-[50%]">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-white">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Hero section 3 content */}
+      <div className="hero-3-section-content px-[80px] py-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {items.map((item, index) => (
+            <div key={index} className="bg-white p-4 rounded-lg shadow-md overflow-hidden">
+              <img src={item.image} alt={item.title} className="w-full h-48 object-cover rounded-lg" />
+              <div className="text-start pt-[15px]">
+                <p className="font-semibold">{item.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
