@@ -28,7 +28,7 @@ const Faq = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
   return (
-    <div className="hero-5-section flex flex-row items-center justify-between mt-[150px] mx-[150px]">
+    <div className="hero-5-section flex flex-row items-center justify-between mt-[150px] mx-[150px] pb-[60px]">
       <div className="content-of-5 w-[610px]">
         <h2 className="font-bold text-[32px]">Frequently Asked Questions</h2>
         <p className="font-medium text-[16px] mt-[16px]">
