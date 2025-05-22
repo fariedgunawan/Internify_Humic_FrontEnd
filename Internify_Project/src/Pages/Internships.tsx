@@ -1,8 +1,10 @@
-import bghero2 from "../assets/hero1about.png"; 
+import bghero2 from "../assets/hero1about.png";
 import Navbar from "../Layout/Navbar";
 import Footer from "../Layout/Footer";
+import { useNavigate } from "react-router-dom";
 
 const Internships = () => {
+  const navigate = useNavigate();
   return (
     <div className="interships-container-body bg-[#F8F9FA] min-h-screen">
       {/* Hero Section */}
@@ -48,7 +50,7 @@ const Internships = () => {
       {/* Section of list internships */}
       <div className="hero-of-list-internships flex flex-col items-center justify-center px-[80x] pt-[50px] gap-[40px] pb-[50px]">
         {/* Card 1 */}
-        <div className="card-1 bg-white rounded-2xl shadow-2xl p-[20px] flex flex-row justify-between w-[60rem]">
+        <div className="card-1 bg-white rounded-2xl shadow-2xl p-[20px] flex flex-row justify-between w-[60rem]" onClick={() => navigate("/Details")}>
           <div className="caption-section flex flex-col items-start">
             <div className="head-caption">
               <h2 className="font-semibold text-[24px]">UI/UX Designer</h2>
