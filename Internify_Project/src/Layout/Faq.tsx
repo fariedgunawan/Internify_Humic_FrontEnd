@@ -22,28 +22,30 @@ const faqData = [
     answer: "Once shipped, you will receive a tracking link via email or SMS.",
   },
 ];
+
 const Faq = () => {
-  const [openIndex, setOpenIndex] = useState(null);
-  const toggleItem = (index: any) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleItem = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
   return (
-    <div className="hero-5-section flex flex-row items-center justify-between mt-[150px] mx-[150px] pb-[60px]">
-      <div className="content-of-5 w-[610px]">
-        <h2 className="font-bold text-[32px]">Frequently Asked Questions</h2>
-        <p className="font-medium text-[16px] mt-[16px]">
+    <div className="hero-5-section flex flex-col lg:flex-row items-start lg:items-center justify-between mt-25 px-6 md:px-16 lg:px-[150px] pb-[60px] gap-10">
+      <div className="content-of-5 w-full lg:w-[610px]">
+        <h2 className="font-bold text-2xl md:text-3xl">Frequently Asked Questions</h2>
+        <p className="font-medium text-base mt-4">
           Berikut adalah informasi mengenai pertanyaan umum seputar program magang di Humic, termasuk tata cara pendaftaran dan persyaratan yang perlu dipenuhi. Masih ada yang perlu ditanyakan? Silahkan{" "}
           <span className="text-[#C3423F] font-semibold">DM</span> kami
         </p>
       </div>
-      <div className="faq-content-list space-y-6 px-4 w-[700px]">
+      <div className="faq-content-list space-y-6 w-full lg:w-[700px]">
         {faqData.map((faq, index) => (
           <div key={index} className="bg-[#FAF0EF] shadow-md rounded-sm">
             <button onClick={() => toggleItem(index)} className="w-full flex items-center justify-between p-4 focus:outline-none">
               <span className="text-[16px] font-semibold text-left text-[#C3423F]">{faq.question}</span>
               <span className="text-[20px] font-bold text-[#C3423F]">{openIndex === index ? "-" : "+"}</span>
             </button>
-
             <div className={`px-4 pb-4 text-black transition-all duration-300 ${openIndex === index ? "block" : "hidden"}`}>
               <p>{faq.answer}</p>
             </div>

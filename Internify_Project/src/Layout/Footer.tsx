@@ -1,32 +1,35 @@
 import humiclogo from "../assets/whiteLogo.png";
-import { FaInstagram } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
+import { FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
-    <div className="footer-container flex flex-col px-[140px] bg-[#263742] mt-[60px] text-white pt-[60px] pb-[20px]">
-      <div className="head-of-footer flex flex-row justify-between">
+    <div className="footer-container flex flex-col px-6 md:px-16 lg:px-[140px] bg-[#263742] mt-[60px] text-white pt-[60px] pb-[20px]">
+      <div className="head-of-footer flex flex-col lg:flex-row justify-between gap-10">
         {/* Right Section */}
         <div className="right-section flex flex-col items-start">
-          <img src={humiclogo} className="w-[160px]" alt="" />
+          <img src={humiclogo} className="w-[160px]" alt="Humic Logo" />
           <p className="text-[16px] mt-[20px]">
-            <span className="font-bold text-[16px]">Gedung Kultubai Selatan, Blok F</span> <br /> Jl. Telekomunikasi, Terusan Buah Batu Bandung <br /> Jawa Barat, Indonesia. 40257
+            <span className="font-bold text-[16px]">Gedung Kultubai Selatan, Blok F</span> <br />
+            Jl. Telekomunikasi, Terusan Buah Batu Bandung <br />
+            Jawa Barat, Indonesia. 40257
           </p>
-          <div className="icons-media flex flex-row items-center gap-[20px] mt-[40px]">
-            <div className="instagram p-[10px] border-2 rounded-[50%]">
+          <div className="icons-media flex flex-row items-center gap-4 mt-[40px]">
+            <div className="instagram p-[10px] border-2 rounded-full">
               <FaInstagram className="text-[24px]" />
             </div>
-            <div className="linkedin p-[10px] border-2 rounded-[50%]">
+            <div className="linkedin p-[10px] border-2 rounded-full">
               <FaLinkedinIn className="text-[24px]" />
             </div>
-            <div className="mail p-[10px] border-2 rounded-[50%]">
+            <div className="mail p-[10px] border-2 rounded-full">
               <MdOutlineEmail className="text-[24px]" />
             </div>
           </div>
         </div>
         {/* Left Section */}
-        <div className="left-section flex flex-row gap-[50px]">
+        <div className="left-section flex flex-col sm:flex-row gap-10">
           <div className="sec-1 flex flex-col gap-3">
             <p className="font-bold">Internship</p>
             <p>Beranda</p>
@@ -38,12 +41,15 @@ const Footer = () => {
             <p>Humic website</p>
             <p>Our Activity</p>
             <p>Life at Humic</p>
-            <p>Our developer</p>
+            <p onClick={() => navigate("/OurDeveloper")} className="cursor-pointer">
+              Our developer
+            </p>
           </div>
         </div>
       </div>
-      <h2 className="flex justify-center items-center mt-[80px]">
-        &copy; Copyright 2025 Humic Research Center <span className="font-bold ml-[10px]">Persyaratan Layanan | Kebijakan Privasi</span>
+      <h2 className="flex flex-col sm:flex-row justify-center items-center mt-[80px] text-center text-sm sm:text-base">
+        &copy; 2025 Humic Research Center
+        <span className="font-bold sm:ml-[10px]">Persyaratan Layanan | Kebijakan Privasi</span>
       </h2>
     </div>
   );
