@@ -5,6 +5,7 @@ import Internships from "./Pages/Internships";
 import InternshipDetails from "./Pages/InternshipDetails";
 import RegisterInternships from "./Pages/RegisterInternships";
 import RegisterDone from "./Pages/RegisterDone";
+import OurDeveloper from "./Pages/OurDeveloper";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/Details" element={<InternshipDetails />} />
         <Route path="/RegisterIntern" element={<RegisterInternships />} />
         <Route path="/RegisterDone" element={<RegisterDone />} />
+        <Route path="/OurDeveloper" element={<OurDeveloper />} />
       </Routes>
     </Router>
   );
