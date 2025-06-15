@@ -20,7 +20,8 @@ const slides = [
   {
     image: bghero2,
     title: "Visi",
-    description: "To become an excellent research center in the field of engineering to improve the human health and prosperity",
+    description:
+      "To become an excellent research center in the field of engineering to improve the human health and prosperity",
   },
   {
     image: bghero3,
@@ -80,7 +81,9 @@ const AboutUs = () => {
         <div className="relative z-10 w-full max-w-full">
           <div className="container-of-content flex flex-col md:flex-row items-start md:items-end md:justify-between gap-6 md:gap-0">
             <div className="right-section max-w-full md:max-w-[670px]">
-              <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">{currentSlide.title}</h2>
+              <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">
+                {currentSlide.title}
+              </h2>
               {/* Mission Control */}
               {currentSlide.title === "Misi" ? (
                 <ol className="list-decimal pl-5 space-y-2 font-normal text-sm sm:text-base md:text-lg mt-3 text-white">
@@ -89,20 +92,52 @@ const AboutUs = () => {
                   ))}
                 </ol>
               ) : (
-                <p className="font-normal text-sm sm:text-base md:text-lg mt-3 text-white">{currentSlide.description}</p>
+                <p className="font-normal text-sm sm:text-base md:text-lg mt-3 text-white">
+                  {currentSlide.description}
+                </p>
               )}
             </div>
 
             {/* Arrow Controls */}
             <div className="left-section flex flex-row items-center gap-6">
-              <button onClick={prevSlide} className="icon-1-right bg-white rounded-full p-2 sm:p-3 md:p-4 hover:bg-gray-200 transition" aria-label="Previous Slide">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 sm:w-8 sm:h-8 text-black" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              <button
+                onClick={prevSlide}
+                className="icon-1-right bg-white rounded-full p-2 sm:p-3 md:p-4 hover:bg-gray-200 transition"
+                aria-label="Previous Slide"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-black"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15.75 19.5 8.25 12l7.5-7.5"
+                  />
                 </svg>
               </button>
-              <button onClick={nextSlide} className="icon-1-right bg-white rounded-full p-2 sm:p-3 md:p-4 hover:bg-gray-200 transition" aria-label="Next Slide">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 sm:w-8 sm:h-8 text-black" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              <button
+                onClick={nextSlide}
+                className="icon-1-right bg-white rounded-full p-2 sm:p-3 md:p-4 hover:bg-gray-200 transition"
+                aria-label="Next Slide"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 sm:w-8 sm:h-8 text-black"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                  />
                 </svg>
               </button>
             </div>
@@ -113,31 +148,86 @@ const AboutUs = () => {
       {/* Hero Section 2 Partnership */}
       <div className="hero-2-partnership bg-[#FAF0EF] flex flex-col md:flex-row items-center justify-between mt-12 px-5 sm:px-20 py-16">
         <div className="caption-hero-2 flex flex-col items-start w-full md:w-[540px] mb-8 md:mb-0">
-          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">Partnership</h2>
-          <h2 className="font-normal text-sm sm:text-base mt-2">Kami bersama-sama menciptakan solusi yang memberdayakan bisnis dan meningkatkan efisiensi operasional.</h2>
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">
+            Partnership
+          </h2>
+          <h2 className="font-normal text-sm sm:text-base mt-2">
+            Kami bersama-sama menciptakan solusi yang memberdayakan bisnis dan
+            meningkatkan efisiensi operasional.
+          </h2>
         </div>
         <div className="image-hero-2 flex flex-row flex-wrap justify-start md:justify-center items-center gap-6 md:gap-12 max-w-full md:max-w-[700px]">
-          <img src={part1} alt="Partnership 1" className="w-16 sm:w-20 md:w-24" />
-          <img src={part2} alt="Partnership 2" className="w-16 sm:w-20 md:w-24" />
-          <img src={part3} alt="Partnership 3" className="w-16 sm:w-20 md:w-24" />
-          <img src={part4} alt="Partnership 4" className="w-16 sm:w-20 md:w-24" />
-          <img src={part5} alt="Partnership 5" className="w-16 sm:w-20 md:w-20" />
+          <img
+            src={part1}
+            alt="Partnership 1"
+            className="w-16 sm:w-20 md:w-24"
+          />
+          <img
+            src={part2}
+            alt="Partnership 2"
+            className="w-16 sm:w-20 md:w-24"
+          />
+          <img
+            src={part3}
+            alt="Partnership 3"
+            className="w-16 sm:w-20 md:w-24"
+          />
+          <img
+            src={part4}
+            alt="Partnership 4"
+            className="w-16 sm:w-20 md:w-24"
+          />
+          <img
+            src={part5}
+            alt="Partnership 5"
+            className="w-16 sm:w-20 md:w-20"
+          />
         </div>
       </div>
 
       {/* Hero section 3 */}
       <div className="hero-3-research-product mt-12 px-5 sm:px-20">
         <div className="title-container flex flex-row justify-between items-center mb-6">
-          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">Hasil produk research</h2>
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">
+            Hasil produk research
+          </h2>
           <div className="arrow-container flex flex-row items-center gap-6">
-            <button className="left bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition" aria-label="Previous research product">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+            <button
+              className="left bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition"
+              aria-label="Previous research product"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
               </svg>
             </button>
-            <button className="right bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition" aria-label="Next research product">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 sm:w-6 sm:h-6 text-white">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+            <button
+              className="right bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition"
+              aria-label="Next research product"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
               </svg>
             </button>
           </div>
@@ -148,10 +238,19 @@ const AboutUs = () => {
       <div className="hero-3-section-content px-5 sm:px-20 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {items.map((item, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col">
-              <img src={item.image} alt={item.title} className="w-full h-48 object-cover rounded-lg mb-4" />
+            <div
+              key={index}
+              className="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-48 object-cover rounded-lg mb-4"
+              />
               <div className="text-start">
-                <p className="font-semibold text-base sm:text-lg">{item.title}</p>
+                <p className="font-semibold text-base sm:text-lg">
+                  {item.title}
+                </p>
               </div>
             </div>
           ))}
