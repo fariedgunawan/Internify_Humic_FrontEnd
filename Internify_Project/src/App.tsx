@@ -9,6 +9,9 @@ import OurDeveloper from "./Pages/OurDeveloper";
 import LoginAdmin from "./Pages/LoginAdmin";
 import AddProduct from "./Pages/AddProduct";
 import InternshipList from "./Pages/InternshipList";
+import InternshipDetailsAdmin from "./Pages/InternshipDetailsAdmin";
+import KontenAktifAdmin from "./Pages/KontenAktifAdmin";
+import EditKontenAdmin from "./Pages/EditKontenAdmin";
 
 function App() {
   return (
@@ -24,6 +27,12 @@ function App() {
         <Route path="/AdminLogin" element={<LoginAdmin />} />
         <Route path="/AddProductAdmin" element={<AddProduct />} />
         <Route path="/InternshipsList" element={<InternshipList />} />
+        <Route path="/KontentAktifAdmin" element={<KontenAktifAdmin />} />
+        <Route path="/KontentAktif/edit/:id" element={<EditKontenAdmin />} />
+        <Route
+          path="/InternshipsDetailsAdmin"
+          element={<InternshipDetailsAdmin />}
+        />
       </Routes>
     </Router>
   );
