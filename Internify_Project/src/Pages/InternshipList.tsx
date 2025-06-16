@@ -16,16 +16,17 @@ const InternshipList = () => {
         {/* Content Section */}
         <div className="content-section p-10 bg-white w-[100rem]">
           <div className="flex justify-between items-center mb-6">
-            <input
-              type="text"
-              placeholder="Cari Nama, Jurusan,"
-              className="border px-4 py-2 rounded-2xl w-[20rem]"
-            />
+            <h2 className="font-semibold text-[24px]">Internship</h2>
             <div className="flex gap-2">
-              <button className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+              <input
+                type="text"
+                placeholder="Cari Nama, Jurusan,"
+                className="px-4 py-2 rounded-2xl w-[20rem] border border-black opacity-40"
+              />
+              <button className="bg-[#227014] hover:bg-green-700 text-white px-4 py-2 rounded-lg">
                 Ekspor ke Excel
               </button>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">
+              <button className="bg-[#1F4A92] hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
                 Tambah
               </button>
             </div>
@@ -55,11 +56,43 @@ const InternshipList = () => {
                     <td className="px-6 py-3 ">{intern.name}</td>
                     <td className="px-6 py-3 ">{intern.position}</td>
                     <td className="px-6 py-3  flex gap-2">
-                      <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded flex items-center gap-1">
-                        <span>✔</span> Terima
+                      <button className="bg-[#3BB525] hover:bg-green-600 text-white px-3 py-1 rounded flex items-center gap-1">
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="size-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                            />
+                          </svg>
+                        </span>{" "}
+                        Terima
                       </button>
-                      <button className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded flex items-center gap-1">
-                        <span>✖</span> Tolak
+                      <button className="bg-[#C3423F] hover:bg-red-600 text-white px-3 py-1 rounded flex items-center gap-1">
+                        <span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="size-6"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                            />
+                          </svg>
+                        </span>{" "}
+                        Tolak
                       </button>
                     </td>
                   </tr>
