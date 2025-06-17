@@ -12,12 +12,15 @@ import InternshipList from "./Pages/InternshipList";
 import InternshipDetailsAdmin from "./Pages/InternshipDetailsAdmin";
 import KontenAktifAdmin from "./Pages/KontenAktifAdmin";
 import EditKontenAdmin from "./Pages/EditKontenAdmin";
+import PartnershipsList from "./Pages/PartnershipsList";
+import AddPartnershipAdmin from "./Pages/AddPartnershipAdmin";
+import TerarsipkanAdmin from "./Pages/TerarsipkanAdmin";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<TerarsipkanAdmin />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Internships" element={<Internships />} />
         <Route path="/Details" element={<InternshipDetails />} />
@@ -33,6 +36,9 @@ function App() {
           path="/InternshipsDetailsAdmin"
           element={<InternshipDetailsAdmin />}
         />
+        <Route path="/PartnershipAdmin" element={<PartnershipsList />} />
+        <Route path="/AddPartnership" element={<AddPartnershipAdmin />} />
+        <Route path="/TerarsipkanAdmin" element={<TerarsipkanAdmin />} />
       </Routes>
     </Router>
   );

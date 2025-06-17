@@ -13,7 +13,7 @@ const AddProduct = () => {
       <div className="sidebar-content flex flex-row">
         {/* Sidebar Section */}
         <SidebarAdmin />
-        {/* Sidebar Section */}
+        {/* end Sidebar Section */}
 
         {/* Content Section */}
         <div className="p-10 bg-white w-[100rem]">
