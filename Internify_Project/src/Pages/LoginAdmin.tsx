@@ -1,5 +1,8 @@
 import logoblack from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+
 const LoginAdmin = () => {
+  const navigate = useNavigate();
   return (
     <div className="body-container min-h-screen bg-[#F7FAFC]">
       <div className="container-of-card flex flex-col min-h-screen gap-9 justify-center items-center">
@@ -55,7 +58,10 @@ const LoginAdmin = () => {
             />
           </div>
 
-          <button className="bg-[#2A4365] text-[20px] text-white w-full p-3 rounded-xl font-medium">
+          <button
+            className="bg-[#2A4365] text-[20px] text-white w-full p-3 rounded-xl font-medium"
+            onClick={() => navigate("/AddProductAdmin")}
+          >
             SignIn
           </button>
         </div>

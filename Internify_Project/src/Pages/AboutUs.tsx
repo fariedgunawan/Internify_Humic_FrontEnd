@@ -8,6 +8,7 @@ import part3 from "../assets/part3.png";
 import part4 from "../assets/part4.png";
 import part5 from "../assets/part5.png";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../Layout/Footer";
 
 const slides = [
@@ -55,6 +56,8 @@ const AboutUs = () => {
     title: "Health IoT",
     image: bghero2,
   });
+
+  const navigate = useNavigate();
 
   return (
     <div className="body-of-aboutus bg-[#F8F9FA] min-h-screen">
@@ -241,6 +244,7 @@ const AboutUs = () => {
             <div
               key={index}
               className="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col"
+              onClick={() => navigate("/DetailsProduct")}
             >
               <img
                 src={item.image}

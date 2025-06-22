@@ -15,6 +15,7 @@ import EditKontenAdmin from "./Pages/EditKontenAdmin";
 import PartnershipsList from "./Pages/PartnershipsList";
 import AddPartnershipAdmin from "./Pages/AddPartnershipAdmin";
 import TerarsipkanAdmin from "./Pages/TerarsipkanAdmin";
+import DetailsProduct from "./Pages/DetailsProduct";
 
 function App() {
   return (
@@ -23,10 +24,11 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Internships" element={<Internships />} />
-        <Route path="/Details" element={<InternshipDetails />} />
-        <Route path="/RegisterIntern" element={<RegisterInternships />} />
+        <Route path="/Details/:id" element={<InternshipDetails />} />
+        <Route path="/RegisterIntern/:id" element={<RegisterInternships />} />
         <Route path="/RegisterDone" element={<RegisterDone />} />
         <Route path="/OurDeveloper" element={<OurDeveloper />} />
+        <Route path="/DetailsProduct" element={<DetailsProduct />} />
         <Route path="/AdminLogin" element={<LoginAdmin />} />
         <Route path="/AddProductAdmin" element={<AddProduct />} />
         <Route path="/InternshipsList" element={<InternshipList />} />
