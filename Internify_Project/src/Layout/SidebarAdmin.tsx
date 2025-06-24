@@ -1,10 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const SidebarAdmin = () => {
+  const navigate = useNavigate();
   return (
     <div className="side-bar-section bg-[#EDF2F7] w-[300px] min-h-[90vh] flex flex-col justify-between p-4">
       <div className="container-sidebar">
         <h2 className="font-semibold text-[#2C5282] text-[20px]">Menu</h2>
         <div className="list-of-sidebar flex flex-col p-7 gap-4">
-          <div className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl">
+          <div
+            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            onClick={() => navigate("/KontentAktifAdmin")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -21,7 +27,10 @@ const SidebarAdmin = () => {
             </svg>
             <h2 className="text-[#2C5282]">Konten Aktif</h2>
           </div>
-          <div className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl">
+          <div
+            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            onClick={() => navigate("/AddProductAdmin")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -39,7 +48,10 @@ const SidebarAdmin = () => {
 
             <h2 className="text-[#2C5282]">Tambah Konten</h2>
           </div>
-          <div className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl">
+          <div
+            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            onClick={() => navigate("/PartnershipAdmin")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -57,7 +69,10 @@ const SidebarAdmin = () => {
 
             <h2 className="text-[#2C5282]">Partnership</h2>
           </div>
-          <div className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl">
+          <div
+            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            onClick={() => navigate("/InternshipsList")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -75,7 +90,10 @@ const SidebarAdmin = () => {
 
             <h2 className="text-[#2C5282]">Internship</h2>
           </div>
-          <div className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl">
+          <div
+            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            onClick={() => navigate("/TerarsipkanAdmin")}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -96,7 +114,7 @@ const SidebarAdmin = () => {
         </div>
       </div>
 
-      <div className="logout flex flex-row items-center gap-3">
+      <div className="logout flex flex-row items-center p-7 gap-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
