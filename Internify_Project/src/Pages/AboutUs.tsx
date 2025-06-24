@@ -2,14 +2,16 @@ import Navbar from "../Layout/Navbar";
 import bghero1 from "../assets/hero2about.png";
 import bghero2 from "../assets/hero1about.png";
 import bghero3 from "../assets/hero3about.png";
-import part1 from "../assets/part1.png";
-import part2 from "../assets/part2.png";
-import part3 from "../assets/part3.png";
-import part4 from "../assets/part4.png";
-import part5 from "../assets/part5.png";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Layout/Footer";
+import { useEffect } from "react";
+
+type Partner = {
+  id: number;
+  nama_partner: string;
+  image_path: string;
+};
 
 const slides = [
   {
@@ -58,6 +60,21 @@ const AboutUs = () => {
   });
 
   const navigate = useNavigate();
+
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    fetch(
+      "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/get"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setPartners(data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch partnership data:", error);
+      });
+  }, []);
 
   return (
     <div className="body-of-aboutus bg-[#F8F9FA] min-h-screen">
@@ -160,31 +177,14 @@ const AboutUs = () => {
           </h2>
         </div>
         <div className="image-hero-2 flex flex-row flex-wrap justify-start md:justify-center items-center gap-6 md:gap-12 max-w-full md:max-w-[700px]">
-          <img
-            src={part1}
-            alt="Partnership 1"
-            className="w-16 sm:w-20 md:w-24"
-          />
-          <img
-            src={part2}
-            alt="Partnership 2"
-            className="w-16 sm:w-20 md:w-24"
-          />
-          <img
-            src={part3}
-            alt="Partnership 3"
-            className="w-16 sm:w-20 md:w-24"
-          />
-          <img
-            src={part4}
-            alt="Partnership 4"
-            className="w-16 sm:w-20 md:w-24"
-          />
-          <img
-            src={part5}
-            alt="Partnership 5"
-            className="w-16 sm:w-20 md:w-20"
-          />
+          {partners.map((partner) => (
+            <img
+              key={partner.id}
+              src={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${partner.image_path}`}
+              alt={`Partnership ${partner.nama_partner}`}
+              className="w-16 sm:w-20 md:w-24"
+            />
+          ))}
         </div>
       </div>
 
