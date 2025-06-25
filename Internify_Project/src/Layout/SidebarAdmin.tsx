@@ -130,7 +130,10 @@ const SidebarAdmin = () => {
           />
         </svg>
 
-        <button className="text-start text-[#C3423F] text-[16px] font-semibold">
+        <button
+          className="text-start text-[#C3423F] text-[16px] font-semibold"
+          onClick={() => navigate("/")}
+        >
           Keluar
         </button>
       </div>
