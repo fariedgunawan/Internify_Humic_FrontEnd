@@ -40,12 +40,12 @@ const PartnershipsList = () => {
               <tbody>
                 {[
                   {
-                    name: "Reinhard",
+                    name: "RHSH",
                     icon: "UI/UX Designer",
                     upload: "01/01/1979",
                   },
                   {
-                    name: "Reinhard",
+                    name: "Image",
                     icon: "UI/UX Designer",
                     upload: "01/01/1979",
                   },

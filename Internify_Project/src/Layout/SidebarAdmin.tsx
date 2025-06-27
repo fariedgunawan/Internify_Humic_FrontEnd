@@ -132,7 +132,12 @@ const SidebarAdmin = () => {
 
         <button
           className="text-start text-[#C3423F] text-[16px] font-semibold"
-          onClick={() => navigate("/")}
+          onClick={() => {
+            // Hapus cookie token biar gabisa url injection
+            document.cookie =
+              "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+            navigate("/");
+          }}
         >
           Keluar
         </button>

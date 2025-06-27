@@ -16,6 +16,7 @@ import PartnershipsList from "./Pages/PartnershipsList";
 import AddPartnershipAdmin from "./Pages/AddPartnershipAdmin";
 import TerarsipkanAdmin from "./Pages/TerarsipkanAdmin";
 import DetailsProduct from "./Pages/DetailsProduct";
+import PrivateRoute from "./Pages/utils/PrivateRoute";
 
 function App() {
   return (
@@ -30,17 +31,20 @@ function App() {
         <Route path="/OurDeveloper" element={<OurDeveloper />} />
         <Route path="/DetailsProduct" element={<DetailsProduct />} />
         <Route path="/AdminLogin" element={<LoginAdmin />} />
-        <Route path="/AddProductAdmin" element={<AddProduct />} />
-        <Route path="/InternshipsList" element={<InternshipList />} />
-        <Route path="/KontentAktifAdmin" element={<KontenAktifAdmin />} />
-        <Route path="/KontentAktif/edit/:id" element={<EditKontenAdmin />} />
-        <Route
-          path="/InternshipsDetailsAdmin"
-          element={<InternshipDetailsAdmin />}
-        />
-        <Route path="/PartnershipAdmin" element={<PartnershipsList />} />
-        <Route path="/AddPartnership" element={<AddPartnershipAdmin />} />
-        <Route path="/TerarsipkanAdmin" element={<TerarsipkanAdmin />} />
+
+        <Route element={<PrivateRoute />}>
+          <Route path="/AddProductAdmin" element={<AddProduct />} />
+          <Route path="/InternshipsList" element={<InternshipList />} />
+          <Route path="/KontentAktifAdmin" element={<KontenAktifAdmin />} />
+          <Route path="/KontentAktif/edit/:id" element={<EditKontenAdmin />} />
+          <Route
+            path="/InternshipsDetailsAdmin"
+            element={<InternshipDetailsAdmin />}
+          />
+          <Route path="/PartnershipAdmin" element={<PartnershipsList />} />
+          <Route path="/AddPartnership" element={<AddPartnershipAdmin />} />
+          <Route path="/TerarsipkanAdmin" element={<TerarsipkanAdmin />} />
+        </Route>
       </Routes>
     </Router>
   );
