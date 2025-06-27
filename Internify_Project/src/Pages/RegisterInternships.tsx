@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Layout/Footer";
@@ -7,6 +7,7 @@ import Navbar from "../Layout/Navbar";
 const RegisterInternships = () => {
   const navigate = useNavigate();
   const { id } = useParams(); // id_lowongan_magang
+  const [posisi, setPosisi] = useState<string>("");
 
   const [formData, setFormData] = useState<{
     nama_depan: string;
@@ -76,6 +77,25 @@ const RegisterInternships = () => {
     }
   };
 
+  useEffect(() => {
+    const fetchPosisi = async () => {
+      try {
+        const response = await axios.get(
+          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/${id}`
+        );
+
+        const posisiValue = response.data?.data?.posisi;
+        if (posisiValue) {
+          setPosisi(posisiValue);
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data posisi:", error);
+      }
+    };
+
+    fetchPosisi();
+  }, [id]);
+
   return (
     <div className="body-of-register min-h-screen bg-[#F8F9FA]">
       <div className="nav-section py-[20px]">
@@ -85,7 +105,7 @@ const RegisterInternships = () => {
       <div className="form-input-container flex flex-col text-[#494949] justify-center items-center">
         <div className="title-of-form">
           <h2 className="font-bold text-[32px] text-black mt-[40px]">
-            UI/UX Designer
+            {posisi || "Loading..."}
           </h2>
         </div>
 

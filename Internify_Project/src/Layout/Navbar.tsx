@@ -55,16 +55,6 @@ const Navbar = () => {
           >
             Internship
           </button>
-
-          {/* Language dropdown */}
-          <div className="relative">
-            <button
-              className="bg-blue-600 text-white font-semibold p-3 rounded-xl text-[18px]"
-              onClick={() => navigate("/AdminLogin")}
-            >
-              Login Admin
-            </button>
-          </div>
         </div>
       </div>
 
@@ -95,16 +85,6 @@ const Navbar = () => {
           >
             Internship
           </button>
-
-          {/* Language dropdown */}
-          <div className="relative">
-            <button
-              className="hover:text-blue-600 text-black rounded-xl text-[18px]"
-              onClick={() => navigate("/AdminLogin")}
-            >
-              Login Admin
-            </button>
-          </div>
         </div>
       )}
     </nav>

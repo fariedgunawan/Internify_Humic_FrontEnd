@@ -1,6 +1,10 @@
 import { useState } from "react";
 import SidebarAdmin from "../Layout/SidebarAdmin";
 import NavbarAdmin from "../Layout/NavbarAdmin";
+import "froala-editor/js/plugins.pkgd.min.js";
+import "froala-editor/css/froala_editor.pkgd.min.css";
+import "froala-editor/css/froala_style.min.css";
+import FroalaEditor from "react-froala-wysiwyg";
 
 const AddProduct = () => {
   const [tipeKonten, setTipeKonten] = useState("Internship");
@@ -81,6 +85,28 @@ const AddProduct = () => {
                     placeholder="UI/UX Designer"
                   />
                 </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium">
+                    Tanggal Mulai Oprec
+                  </label>
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded-lg p-3"
+                    placeholder="UI/UX Designer"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium">
+                    Tanggal Berakhir Oprec
+                  </label>
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded-lg p-3"
+                    placeholder="UI/UX Designer"
+                  />
+                </div>
               </div>
             )}
 
@@ -156,10 +182,17 @@ const AddProduct = () => {
             {/* Common Field: Isi Konten */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Isi Konten</label>
-              <textarea
-                className="border border-gray-300 rounded-lg p-3 min-h-[150px]"
-                placeholder="Lorem ipsum..."
-              />
+              <div className="border border-gray-300 rounded-lg p-2">
+                <FroalaEditor
+                  tag="textarea"
+                  config={{
+                    placeholderText: "Tulis konten di sini...",
+                    charCounterCount: true,
+                    toolbarSticky: true,
+                    heightMin: 200,
+                  }}
+                />
+              </div>
             </div>
           </form>
         </div>
