@@ -85,6 +85,26 @@ const AddProduct = () => {
                     placeholder="UI/UX Designer"
                   />
                 </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium">
+                    Tanggal Mulai Oprec
+                  </label>
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded-lg p-3"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-sm font-medium">
+                    Tanggal Akhir Oprec
+                  </label>
+                  <input
+                    type="date"
+                    className="border border-gray-300 rounded-lg p-3"
+                  />
+                </div>
               </div>
             )}
 
