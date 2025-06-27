@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: JakartaSans;
-  src: url(PlusJakartaSans-VariableFont_wght.ttf);
+  font-family: Montserrat;
+  src: url(Montserrat-VariableFont_wght.ttf);
 }
 
 :root {
-  font-family: JakartaSans, sans-serif;
+  font-family: Montserrat, sans-serif;
   color: black;
 }
