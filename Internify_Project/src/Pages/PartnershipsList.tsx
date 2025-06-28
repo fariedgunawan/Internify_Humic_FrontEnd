@@ -30,6 +30,46 @@ const PartnershipsList = () => {
     fetchPartnerships();
   }, []);
 
+  const token = document.cookie
+    .split("; ")
+    .find((row) => row.startsWith("token="))
+    ?.split("=")[1];
+
+  const handleDelete = async (id: number) => {
+    const confirmDelete = confirm(
+      "Apakah Anda yakin ingin menghapus partnership ini?"
+    );
+    if (!confirmDelete) return;
+
+    if (!token) {
+      alert("Token tidak ditemukan. Silakan login ulang.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const result = await response.json();
+      if (response.ok) {
+        alert("Partnership berhasil dihapus!");
+        setPartnerships((prev) => prev.filter((item) => item.id !== id));
+      } else {
+        alert(result.message || "Gagal menghapus partnership.");
+      }
+    } catch (error) {
+      alert("Terjadi kesalahan saat menghapus data.");
+      console.error("Error delete:", error);
+    }
+  };
+
   return (
     <div className="page-container">
       <NavbarAdmin />
@@ -97,7 +137,12 @@ const PartnershipsList = () => {
                         </button>
 
                         {/* Tombol Edit */}
-                        <button className="bg-[#2CAEFF] text-white p-2 rounded-xl">
+                        <button
+                          className="bg-[#2CAEFF] text-white p-2 rounded-xl"
+                          onClick={() =>
+                            navigate(`/EditPartnership/${partner.id}`)
+                          }
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -115,7 +160,10 @@ const PartnershipsList = () => {
                         </button>
 
                         {/* Tombol Hapus */}
-                        <button className="bg-[#E41E1E] text-white p-2 rounded-xl">
+                        <button
+                          className="bg-[#E41E1E] text-white p-2 rounded-xl"
+                          onClick={() => handleDelete(partner.id)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

@@ -8,6 +8,7 @@ const RegisterInternships = () => {
   const navigate = useNavigate();
   const { id } = useParams(); // id_lowongan_magang
   const [posisi, setPosisi] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState<{
     nama_depan: string;
@@ -42,6 +43,7 @@ const RegisterInternships = () => {
     }
 
     const data = new FormData();
+    // Append form fields...
     data.append("nama_depan", formData.nama_depan);
     data.append("nama_belakang", formData.nama_belakang);
     data.append("email", formData.email);
@@ -52,6 +54,8 @@ const RegisterInternships = () => {
     data.append("relevant_skills", formData.relevant_skills);
     if (formData.cv) data.append("cv", formData.cv);
     if (formData.portofolio) data.append("portofolio", formData.portofolio);
+
+    setIsSubmitting(true); // Start loading
 
     try {
       const response = await axios.post(
@@ -74,6 +78,8 @@ const RegisterInternships = () => {
       } else {
         console.error("Unexpected error:", error);
       }
+    } finally {
+      setIsSubmitting(false); // Stop loading
     }
   };
 
@@ -272,9 +278,14 @@ const RegisterInternships = () => {
           <div className="md:col-span-2 text-center mt-[40px]">
             <button
               type="submit"
-              className="bg-[#C3423F] text-white px-9 rounded-xl py-3 font-bold shadow-2xl"
+              disabled={isSubmitting}
+              className={`px-9 py-3 rounded-xl font-bold shadow-2xl ${
+                isSubmitting
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-[#C3423F] text-white"
+              }`}
             >
-              Submit
+              {isSubmitting ? "Mengirim..." : "Submit"}
             </button>
           </div>
         </form>

@@ -1,10 +1,26 @@
 import { useState } from "react";
 import humiclogo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    if (location.pathname === "/") {
+      document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { replace: false });
+      // Tunggu sampai halaman Landing ter-load, lalu scroll ke footer
+      setTimeout(() => {
+        document
+          .getElementById("footer")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 500); // delay bisa disesuaikan
+    }
+  };
 
   return (
     <nav className="bg-[#D7E1E8] px-4 py-5 mx-5 rounded-2xl shadow-md">
@@ -48,7 +64,12 @@ const Navbar = () => {
           >
             About Us
           </button>
-          <button className="hover:text-blue-600 transition">Contact Us</button>
+          <button
+            onClick={handleContactClick}
+            className="hover:text-blue-600 transition"
+          >
+            Contact Us
+          </button>
           <button
             onClick={() => navigate("/Internships")}
             className="hover:text-blue-600 transition"
@@ -71,11 +92,15 @@ const Navbar = () => {
             About Us
           </button>
           <button
-            onClick={() => setOpenMenu(false)}
+            onClick={() => {
+              handleContactClick();
+              setOpenMenu(false);
+            }}
             className="block w-full text-left hover:text-blue-600 transition"
           >
             Contact Us
           </button>
+
           <button
             onClick={() => {
               navigate("/Internships");

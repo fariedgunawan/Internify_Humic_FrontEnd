@@ -57,7 +57,7 @@ const KontenAktifAdmin = () => {
 
         {/* Content Section */}
         <div className="content-section p-10 bg-white w-[100rem]">
-          <h2 className="font-semibold text-[24px] mb-10">Konten Aktif</h2>
+          <h2 className="font-semibold text-[24px] mb-10">Produk Humic</h2>
 
           <div className="table-section">
             <div className="overflow-x-auto w-full h-[770px] ">
