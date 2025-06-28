@@ -24,7 +24,6 @@ const LoginAdmin = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Simpan token ke cookie berlaku sampai browser di tutup
         document.cookie = `token=${data.token}; path=/;`;
 
         //navigate to admin dashboard guys

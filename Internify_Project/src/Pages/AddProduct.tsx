@@ -1,13 +1,100 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarAdmin from "../Layout/SidebarAdmin";
 import NavbarAdmin from "../Layout/NavbarAdmin";
 import "froala-editor/js/plugins.pkgd.min.js";
 import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
 import FroalaEditor from "react-froala-wysiwyg";
+import axios from "axios";
 
 const AddProduct = () => {
   const [tipeKonten, setTipeKonten] = useState("Internship");
+
+  const [posisi, setPosisi] = useState("");
+  const [kelompok, setKelompok] = useState("");
+  const [kelompokOptions, setKelompokOptions] = useState<string[]>([]);
+  const [lokasi, setLokasi] = useState("");
+  const [paid, setPaid] = useState("paid");
+  const [durasiAwal, setDurasiAwal] = useState("");
+  const [durasiAkhir, setDurasiAkhir] = useState("");
+  const [jobdesk, setJobdesk] = useState("");
+  const [image, setImage] = useState<File | null>(null);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/kelompok-all"
+      )
+      .then((res) => {
+        setKelompokOptions(res.data.data);
+        setKelompok(res.data.data[0] || "");
+      })
+      .catch((err) => {
+        console.error("Gagal memuat kelompok peminatan:", err);
+      });
+  }, []);
+
+  const handleSubmit = async () => {
+    const token = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    if (!token) {
+      alert("Token tidak ditemukan.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("posisi", posisi);
+    formData.append("kelompok_peminatan", kelompok);
+    formData.append("lokasi", lokasi);
+    formData.append("jobdesk", jobdesk);
+    formData.append("kualifikasi", getRandomKualifikasi());
+    formData.append("benefit", getRandomBenefit());
+    formData.append("durasi_awal", durasiAwal);
+    formData.append("durasi_akhir", durasiAkhir);
+    formData.append("paid", paid);
+    if (image) formData.append("image", image);
+
+    try {
+      await axios.post(
+        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/add",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      alert("Internship berhasil ditambahkan!");
+    } catch (error) {
+      console.error("Error adding internship:", error);
+      alert("Gagal menambahkan internship.");
+    }
+  };
+
+  const getRandomKualifikasi = () => {
+    const list = [
+      "Menguasai tools desain",
+      "Bisa bekerja dalam tim",
+      "Memiliki laptop pribadi",
+      "Menguasai dasar HTML & CSS",
+    ];
+    return list[Math.floor(Math.random() * list.length)];
+  };
+
+  const getRandomBenefit = () => {
+    const list = [
+      "Sertifikat",
+      "Uang transport",
+      "Mentoring langsung",
+      "Kesempatan kerja tetap",
+    ];
+    return list[Math.floor(Math.random() * list.length)];
+  };
+
   return (
     <div className="page-container">
       {/* Navbar Section */}
@@ -23,7 +110,10 @@ const AddProduct = () => {
         <div className="p-10 bg-white w-[100rem]">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-semibold">Tambah Konten</h2>
-            <button className="bg-[#1F4A92] text-white px-6 py-2 rounded-md font-medium">
+            <button
+              className="bg-[#1F4A92] text-white px-6 py-2 rounded-md font-medium"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </div>
@@ -53,18 +143,28 @@ const AddProduct = () => {
                   <label className="text-sm font-medium">
                     Kategori Internship
                   </label>
-                  <select className="border border-gray-300 rounded-lg p-3">
-                    <option value="Design">Design</option>
-                    <option value="Programming">Programming</option>
-                    <option value="Marketing">Marketing</option>
+                  <select
+                    className="border border-gray-300 rounded-lg p-3"
+                    value={kelompok}
+                    onChange={(e) => setKelompok(e.target.value)}
+                  >
+                    {kelompokOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-medium">Paid</label>
-                  <select className="border border-gray-300 rounded-lg p-3">
-                    <option value="Paid">Paid</option>
-                    <option value="Unpaid">Unpaid</option>
+                  <select
+                    className="border border-gray-300 rounded-lg p-3"
+                    value={paid}
+                    onChange={(e) => setPaid(e.target.value)}
+                  >
+                    <option value="paid">Paid</option>
+                    <option value="unpaid">Unpaid</option>
                   </select>
                 </div>
 
@@ -73,6 +173,8 @@ const AddProduct = () => {
                   <input
                     type="text"
                     className="border border-gray-300 rounded-lg p-3"
+                    value={lokasi}
+                    onChange={(e) => setLokasi(e.target.value)}
                     placeholder="Bandung"
                   />
                 </div>
@@ -82,6 +184,8 @@ const AddProduct = () => {
                   <input
                     type="text"
                     className="border border-gray-300 rounded-lg p-3"
+                    value={posisi}
+                    onChange={(e) => setPosisi(e.target.value)}
                     placeholder="UI/UX Designer"
                   />
                 </div>
@@ -93,6 +197,8 @@ const AddProduct = () => {
                   <input
                     type="date"
                     className="border border-gray-300 rounded-lg p-3"
+                    value={durasiAwal}
+                    onChange={(e) => setDurasiAwal(e.target.value)}
                   />
                 </div>
 
@@ -102,6 +208,22 @@ const AddProduct = () => {
                   </label>
                   <input
                     type="date"
+                    className="border border-gray-300 rounded-lg p-3"
+                    value={durasiAkhir}
+                    onChange={(e) => setDurasiAkhir(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2 col-span-2">
+                  <label className="text-sm font-medium">
+                    Thumbnail / Image
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) =>
+                      setImage(e.target.files ? e.target.files[0] : null)
+                    }
                     className="border border-gray-300 rounded-lg p-3"
                   />
                 </div>
@@ -183,8 +305,10 @@ const AddProduct = () => {
               <div className="border border-gray-300 rounded-lg p-2">
                 <FroalaEditor
                   tag="textarea"
+                  model={jobdesk}
+                  onModelChange={(model: any) => setJobdesk(model)}
                   config={{
-                    placeholderText: "Tulis konten di sini...",
+                    placeholderText: "Tulis deskripsi pekerjaan...",
                     charCounterCount: true,
                     toolbarSticky: true,
                     heightMin: 200,

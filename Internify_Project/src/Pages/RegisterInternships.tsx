@@ -81,7 +81,7 @@ const RegisterInternships = () => {
     const fetchPosisi = async () => {
       try {
         const response = await axios.get(
-          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/${id}`
+          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/id/${id}`
         );
 
         const posisiValue = response.data?.data?.posisi;
