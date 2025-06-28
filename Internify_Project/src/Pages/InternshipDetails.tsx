@@ -47,6 +47,7 @@ const InternshipDetails = () => {
             </h2>
             <div className="flex flex-col md:flex-row items-start md:items-center font-bold gap-4 md:gap-8 mt-5 text-[#292D32]">
               <div className="flex items-center gap-2">
+                {/* Lokasi */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 md:w-7 md:h-7"
@@ -68,6 +69,8 @@ const InternshipDetails = () => {
                 </svg>
                 <h2 className="text-[16px] md:text-[18px]">{intern.lokasi}</h2>
               </div>
+
+              {/* Kelompok Peminatan */}
               <div className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,6 +90,8 @@ const InternshipDetails = () => {
                   {intern.kelompok_peminatan}
                 </h2>
               </div>
+
+              {/* Paid / Unpaid */}
               <div className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -120,27 +125,13 @@ const InternshipDetails = () => {
           </div>
         </div>
 
-        {/* Job Description */}
+        {/* Job Description Only */}
         <div className="mt-10 text-[#5F5F5F]">
           <div className="mb-6">
-            <h2 className="text-[20px] font-semibold text-black mb-2">
-              Deskripsi Pekerjaan :
-            </h2>
-            <p className="text-[16px] font-medium">{intern.jobdesk}</p>
-          </div>
-
-          <div className="mb-6">
-            <h2 className="text-[20px] font-semibold text-black mb-2">
-              Kualifikasi :
-            </h2>
-            <p className="text-[16px] font-medium">{intern.kualifikasi}</p>
-          </div>
-
-          <div>
-            <h2 className="text-[20px] font-semibold text-black mb-2">
-              Benefit :
-            </h2>
-            <p className="text-[16px] font-medium">{intern.benefit}</p>
+            <div
+              className="text-[16px] font-medium"
+              dangerouslySetInnerHTML={{ __html: intern.jobdesk }}
+            />
           </div>
         </div>
       </div>

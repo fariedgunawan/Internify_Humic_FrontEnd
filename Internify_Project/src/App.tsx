@@ -38,7 +38,7 @@ function App() {
           <Route path="/KontentAktifAdmin" element={<KontenAktifAdmin />} />
           <Route path="/KontentAktif/edit/:id" element={<EditKontenAdmin />} />
           <Route
-            path="/InternshipsDetailsAdmin"
+            path="/InternshipsDetailsAdmin/:id"
             element={<InternshipDetailsAdmin />}
           />
           <Route path="/PartnershipAdmin" element={<PartnershipsList />} />
