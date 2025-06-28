@@ -17,6 +17,11 @@ import AddPartnershipAdmin from "./Pages/AddPartnershipAdmin";
 import TerarsipkanAdmin from "./Pages/TerarsipkanAdmin";
 import DetailsProduct from "./Pages/DetailsProduct";
 import PrivateRoute from "./Pages/utils/PrivateRoute";
+import EditPartnerships from "./Pages/EditPartnerships";
+import ListLowongan from "./Pages/ListLowongan";
+import ListProduct from "./Pages/ListProduct";
+import AddProductHumic from "./Pages/AddProductHumic";
+import EditProductHumic from "./Pages/EditProductHumic";
 
 function App() {
   return (
@@ -29,12 +34,16 @@ function App() {
         <Route path="/RegisterIntern/:id" element={<RegisterInternships />} />
         <Route path="/RegisterDone" element={<RegisterDone />} />
         <Route path="/OurDeveloper" element={<OurDeveloper />} />
-        <Route path="/DetailsProduct" element={<DetailsProduct />} />
+        <Route path="/DetailsProduct/:id" element={<DetailsProduct />} />
         <Route path="/AdminLogin" element={<LoginAdmin />} />
 
         <Route element={<PrivateRoute />}>
           <Route path="/AddProductAdmin" element={<AddProduct />} />
           <Route path="/InternshipsList" element={<InternshipList />} />
+          <Route path="/LowonganList" element={<ListLowongan />} />
+          <Route path="/ProductList" element={<ListProduct />} />
+          <Route path="/AddProductHumic" element={<AddProductHumic />} />
+          <Route path="/EditProductHumic/:id" element={<EditProductHumic />} />
           <Route path="/KontentAktifAdmin" element={<KontenAktifAdmin />} />
           <Route path="/KontentAktif/edit/:id" element={<EditKontenAdmin />} />
           <Route
@@ -43,6 +52,7 @@ function App() {
           />
           <Route path="/PartnershipAdmin" element={<PartnershipsList />} />
           <Route path="/AddPartnership" element={<AddPartnershipAdmin />} />
+          <Route path="/EditPartnership/:id" element={<EditPartnerships />} />
           <Route path="/TerarsipkanAdmin" element={<TerarsipkanAdmin />} />
         </Route>
       </Routes>

@@ -8,12 +8,22 @@ import bghero1 from "../assets/hero1.png";
 import Footer from "../Layout/Footer";
 import Faq from "../Layout/Faq";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   type Internship = {
     id: string;
     posisi: string;
     image_path: string;
+  };
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (search.trim()) {
+      navigate(`/Internships?search=${encodeURIComponent(search)}`);
+    }
   };
 
   const [internships, setInternships] = useState<Internship[]>([]);
@@ -57,9 +67,11 @@ const Landing = () => {
           </h2>
 
           <div className="search-section bg-white p-[15px] rounded-xl shadow-md w-full max-w-lg mt-[40px] text-black">
-            <form className="flex items-center gap-3">
+            <form onSubmit={handleSearch} className="flex items-center gap-3">
               <input
                 type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Cari program magang atau pelatihan..."
                 className="flex-1 outline-none text-[16px] px-3 py-2"
               />
@@ -69,6 +81,12 @@ const Landing = () => {
                 stroke="currentColor"
                 strokeWidth="2"
                 viewBox="0 0 24 24"
+                onClick={() => {
+                  if (search.trim())
+                    navigate(
+                      `/Internships?search=${encodeURIComponent(search)}`
+                    );
+                }}
               >
                 <path
                   strokeLinecap="round"
@@ -149,7 +167,7 @@ const Landing = () => {
           Jelajahi posisi yang kamu inginkan
         </h2>
 
-        <div className="card-container mt-[110px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-[60px] xl:gap-[100px] mx-3 sm:mx-[10px]">
+        <div className="card-container mt-[110px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-[60px] xl:gap-[80px] mx-3 sm:mx-[10px]">
           {internships.map((intern) => (
             <div
               key={intern.id}

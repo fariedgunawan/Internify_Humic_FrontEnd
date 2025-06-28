@@ -111,7 +111,7 @@ const InternshipList = () => {
         <SidebarAdmin />
         <div className="content-section p-10 bg-white w-[100rem]">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="font-semibold text-[24px]">Internship</h2>
+            <h2 className="font-semibold text-[24px]">Daftar Pelamar</h2>
             <div className="flex gap-2">
               <input
                 type="text"

@@ -6,13 +6,19 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <div className="footer-container flex flex-col px-6 md:px-16 lg:px-[140px] bg-[#263742] mt-[60px] text-white pt-[60px] pb-[20px]">
+    <footer
+      id="footer"
+      className="footer-container flex flex-col px-6 md:px-16 lg:px-[140px] bg-[#263742] mt-[60px] text-white pt-[60px] pb-[20px]"
+    >
       <div className="head-of-footer flex flex-col lg:flex-row justify-between gap-10">
         {/* Right Section */}
         <div className="right-section flex flex-col items-start">
           <img src={humiclogo} className="w-[160px]" alt="Humic Logo" />
           <p className="text-[16px] mt-[20px]">
-            <span className="font-bold text-[16px]">Gedung Kultubai Selatan, Blok F</span> <br />
+            <span className="font-bold text-[16px]">
+              Gedung Kultubai Selatan, Blok F
+            </span>{" "}
+            <br />
             Jl. Telekomunikasi, Terusan Buah Batu Bandung <br />
             Jawa Barat, Indonesia. 40257
           </p>
@@ -41,7 +47,10 @@ const Footer = () => {
             <p>Humic website</p>
             <p>Our Activity</p>
             <p>Life at Humic</p>
-            <p onClick={() => navigate("/OurDeveloper")} className="cursor-pointer">
+            <p
+              onClick={() => navigate("/OurDeveloper")}
+              className="cursor-pointer"
+            >
               Our developer
             </p>
           </div>
@@ -49,9 +58,11 @@ const Footer = () => {
       </div>
       <h2 className="flex flex-col sm:flex-row justify-center items-center mt-[80px] text-center text-sm sm:text-base">
         &copy; 2025 Humic Research Center
-        <span className="font-bold sm:ml-[10px]">Persyaratan Layanan | Kebijakan Privasi</span>
+        <span className="font-bold sm:ml-[10px]">
+          Persyaratan Layanan | Kebijakan Privasi
+        </span>
       </h2>
-    </div>
+    </footer>
   );
 };
 

@@ -7,33 +7,6 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../Layout/Footer";
 import { useEffect } from "react";
 
-type Partner = {
-  id: number;
-  nama_partner: string;
-  image_path: string;
-};
-
-const slides = [
-  {
-    image: bghero1,
-    title: "About Us",
-    description:
-      "Research Center Human Centric Engineering (RC HUMIC), merupakan pusat penelitian Telkom University yang berfokus pada pengembangkan rekayasa teknologi yang berkaitan dengan dukungan aktivitas manusia sehari-hari seperti bidang komputasi, informatika, elektronika, robotik, mekanikal, dan teknik biomedis.",
-  },
-  {
-    image: bghero2,
-    title: "Visi",
-    description:
-      "To become an excellent research center in the field of engineering to improve the human health and prosperity",
-  },
-  {
-    image: bghero3,
-    title: "Misi",
-    description:
-      "1. Becoming the science and technology excellent center in the field of embedded sensor systems to support biomedical applications based on the Internet of Things (IoT). 2. Becoming the science and technology excellent center on development remote health monitoring systems based on Internet of Things (IoT).",
-  },
-];
-
 const missions = [
   "Becoming the science and technology excellent center in the field of embedded sensor systems to support biomedical applications based on the Internet of Things (IoT).",
   "Becoming the science and technology excellent center on development remote health monitoring systems based on Internet of Things (IoT).",
@@ -43,6 +16,45 @@ const missions = [
 
 const AboutUs = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [researchProducts, setResearchProducts] = useState<ResearchProduct[]>(
+    []
+  );
+
+  type Partner = {
+    id: number;
+    nama_partner: string;
+    image_path: string;
+  };
+  type ResearchProduct = {
+    id: number;
+    nama_project: string;
+    image_path: string;
+  };
+
+  const slides = [
+    {
+      image: bghero1,
+      title: "About Us",
+      description:
+        "Research Center Human Centric Engineering (RC HUMIC), merupakan pusat penelitian Telkom University yang berfokus pada pengembangkan rekayasa teknologi yang berkaitan dengan dukungan aktivitas manusia sehari-hari seperti bidang komputasi, informatika, elektronika, robotik, mekanikal, dan teknik biomedis.",
+    },
+    {
+      image: bghero2,
+      title: "Visi",
+      description:
+        "To become an excellent research center in the field of engineering to improve the human health and prosperity",
+    },
+    {
+      image: bghero3,
+      title: "Misi",
+      description:
+        "1. Becoming the science and technology excellent center in the field of embedded sensor systems to support biomedical applications based on the Internet of Things (IoT). 2. Becoming the science and technology excellent center on development remote health monitoring systems based on Internet of Things (IoT).",
+    },
+  ];
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -54,14 +66,28 @@ const AboutUs = () => {
 
   const currentSlide = slides[currentIndex];
 
-  const items = Array(8).fill({
-    title: "Health IoT",
-    image: bghero2,
-  });
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = researchProducts.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const totalPages = Math.ceil(researchProducts.length / itemsPerPage);
 
   const navigate = useNavigate();
 
-  const [partners, setPartners] = useState<Partner[]>([]);
+  useEffect(() => {
+    fetch(
+      "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/get"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setResearchProducts(data.data);
+      })
+      .catch((error) => {
+        console.error("Gagal mengambil data hasil research:", error);
+      });
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -196,7 +222,9 @@ const AboutUs = () => {
           </h2>
           <div className="arrow-container flex flex-row items-center gap-6">
             <button
-              className="left bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="left bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition disabled:opacity-50"
               aria-label="Previous research product"
             >
               <svg
@@ -215,7 +243,11 @@ const AboutUs = () => {
               </svg>
             </button>
             <button
-              className="right bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+              disabled={currentPage === totalPages}
+              className="right bg-[#C3423F] p-2 sm:p-3 rounded-full hover:bg-red-700 transition disabled:opacity-50"
               aria-label="Next research product"
             >
               <svg
@@ -240,20 +272,20 @@ const AboutUs = () => {
       {/* Hero section 3 content */}
       <div className="hero-3-section-content px-5 sm:px-20 pb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item, index) => (
+          {currentProducts.map((item) => (
             <div
-              key={index}
-              className="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col"
-              onClick={() => navigate("/DetailsProduct")}
+              key={item.id}
+              className="bg-white p-4 rounded-lg shadow-md overflow-hidden flex flex-col cursor-pointer hover:shadow-lg transition"
+              onClick={() => navigate(`/DetailsProduct/${item.id}`)}
             >
               <img
-                src={item.image}
-                alt={item.title}
+                src={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${item.image_path}`}
+                alt={item.nama_project}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
               <div className="text-start">
-                <p className="font-semibold text-base sm:text-lg">
-                  {item.title}
+                <p className="font-semibold text-base sm:text-lg line-clamp-2">
+                  {item.nama_project}
                 </p>
               </div>
             </div>

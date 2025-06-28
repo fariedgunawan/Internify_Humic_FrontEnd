@@ -8,8 +8,6 @@ import FroalaEditor from "react-froala-wysiwyg";
 import axios from "axios";
 
 const AddProduct = () => {
-  const [tipeKonten, setTipeKonten] = useState("Internship");
-
   const [posisi, setPosisi] = useState("");
   const [kelompok, setKelompok] = useState("");
   const [kelompokOptions, setKelompokOptions] = useState<string[]>([]);
@@ -97,19 +95,12 @@ const AddProduct = () => {
 
   return (
     <div className="page-container">
-      {/* Navbar Section */}
       <NavbarAdmin />
-      {/* End of Navbar Section */}
-
       <div className="sidebar-content flex flex-row">
-        {/* Sidebar Section */}
         <SidebarAdmin />
-        {/* end Sidebar Section */}
-
-        {/* Content Section */}
         <div className="p-10 bg-white w-[100rem]">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="text-xl font-semibold">Tambah Konten</h2>
+            <h2 className="text-xl font-semibold">Tambah Lowongan</h2>
             <button
               className="bg-[#1F4A92] text-white px-6 py-2 rounded-md font-medium"
               onClick={handleSubmit}
@@ -119,202 +110,110 @@ const AddProduct = () => {
           </div>
 
           <form className="flex flex-col gap-6 max-w-full">
-            {/* Select Tipe Konten */}
+            {/* Internship Fields Only */}
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium">Tipe Konten</label>
+                <label className="text-sm font-medium">
+                  Kategori Internship
+                </label>
                 <select
                   className="border border-gray-300 rounded-lg p-3"
-                  value={tipeKonten}
-                  onChange={(e) => setTipeKonten(e.target.value)}
+                  value={kelompok}
+                  onChange={(e) => setKelompok(e.target.value)}
                 >
-                  <option value="Internship">Internship</option>
-                  <option value="Product">Product</option>
-                  <option value="News">News</option>
-                  <option value="Event">Event</option>
+                  {kelompokOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
                 </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">Paid</label>
+                <select
+                  className="border border-gray-300 rounded-lg p-3"
+                  value={paid}
+                  onChange={(e) => setPaid(e.target.value)}
+                >
+                  <option value="paid">Paid</option>
+                  <option value="unpaid">Unpaid</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">Lokasi</label>
+                <input
+                  type="text"
+                  className="border border-gray-300 rounded-lg p-3"
+                  value={lokasi}
+                  onChange={(e) => setLokasi(e.target.value)}
+                  placeholder="Bandung"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">Nama Internship</label>
+                <input
+                  type="text"
+                  className="border border-gray-300 rounded-lg p-3"
+                  value={posisi}
+                  onChange={(e) => setPosisi(e.target.value)}
+                  placeholder="UI/UX Designer"
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">
+                  Tanggal Mulai Oprec
+                </label>
+                <input
+                  type="date"
+                  className="border border-gray-300 rounded-lg p-3"
+                  value={durasiAwal}
+                  onChange={(e) => setDurasiAwal(e.target.value)}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-medium">
+                  Tanggal Akhir Oprec
+                </label>
+                <input
+                  type="date"
+                  className="border border-gray-300 rounded-lg p-3"
+                  value={durasiAkhir}
+                  onChange={(e) => setDurasiAkhir(e.target.value)}
+                />
+              </div>
+
+              <div className="flex flex-col gap-2 col-span-2">
+                <label className="text-sm font-medium">Thumbnail / Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) =>
+                    setImage(e.target.files ? e.target.files[0] : null)
+                  }
+                  className="border border-gray-300 rounded-lg p-3"
+                />
               </div>
             </div>
 
-            {/* Field untuk Internship */}
-            {tipeKonten === "Internship" && (
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">
-                    Kategori Internship
-                  </label>
-                  <select
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={kelompok}
-                    onChange={(e) => setKelompok(e.target.value)}
-                  >
-                    {kelompokOptions.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Paid</label>
-                  <select
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={paid}
-                    onChange={(e) => setPaid(e.target.value)}
-                  >
-                    <option value="paid">Paid</option>
-                    <option value="unpaid">Unpaid</option>
-                  </select>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Lokasi</label>
-                  <input
-                    type="text"
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={lokasi}
-                    onChange={(e) => setLokasi(e.target.value)}
-                    placeholder="Bandung"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Nama Internship</label>
-                  <input
-                    type="text"
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={posisi}
-                    onChange={(e) => setPosisi(e.target.value)}
-                    placeholder="UI/UX Designer"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">
-                    Tanggal Mulai Oprec
-                  </label>
-                  <input
-                    type="date"
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={durasiAwal}
-                    onChange={(e) => setDurasiAwal(e.target.value)}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">
-                    Tanggal Akhir Oprec
-                  </label>
-                  <input
-                    type="date"
-                    className="border border-gray-300 rounded-lg p-3"
-                    value={durasiAkhir}
-                    onChange={(e) => setDurasiAkhir(e.target.value)}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2 col-span-2">
-                  <label className="text-sm font-medium">
-                    Thumbnail / Image
-                  </label>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) =>
-                      setImage(e.target.files ? e.target.files[0] : null)
-                    }
-                    className="border border-gray-300 rounded-lg p-3"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Field untuk Product */}
-            {tipeKonten === "Product" && (
-              <div className="flex flex-col gap-6">
-                {/* Baris Tipe & Judul Konten */}
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-medium">Judul Konten</label>
-                    <input
-                      type="text"
-                      className="border border-gray-300 rounded-lg p-3"
-                      placeholder="Lorem Ipsum"
-                    />
-                  </div>
-                </div>
-
-                {/* Thumbnail Upload */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Thumbnail</label>
-                  <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2">
-                    <input
-                      type="file"
-                      accept=".jpg,.png,.webm"
-                      id="uploadThumbnail"
-                    />
-                  </div>
-                  <p className="text-red-500 text-xs">
-                    *File harus berformat .jpg .png .webm dengan resolusi
-                    maksimal 1024x500
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Field untuk News */}
-            {tipeKonten === "News" && (
-              <div className="grid grid-cols-1 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Judul Berita</label>
-                  <input
-                    type="text"
-                    className="border border-gray-300 rounded-lg p-3"
-                    placeholder="Contoh: Nazyshine Resmi Launching!"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Field untuk Event */}
-            {tipeKonten === "Event" && (
-              <div className="grid grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Nama Event</label>
-                  <input
-                    type="text"
-                    className="border border-gray-300 rounded-lg p-3"
-                    placeholder="Contoh: Webinar UI/UX"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Tanggal Event</label>
-                  <input
-                    type="date"
-                    className="border border-gray-300 rounded-lg p-3"
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* Common Field: Isi Konten */}
+            {/* Isi Konten */}
             <div className="flex flex-col gap-2">
               <label className="text-sm font-medium">Isi Konten</label>
-              <div className="border border-gray-300 rounded-lg p-2">
-                <FroalaEditor
-                  tag="textarea"
-                  model={jobdesk}
-                  onModelChange={(model: any) => setJobdesk(model)}
-                  config={{
-                    placeholderText: "Tulis deskripsi pekerjaan...",
-                    charCounterCount: true,
-                    toolbarSticky: true,
-                    heightMin: 200,
-                  }}
-                />
-              </div>
+              <FroalaEditor
+                tag="textarea"
+                model={jobdesk}
+                onModelChange={(model: any) => setJobdesk(model)}
+                config={{
+                  placeholderText: "Tulis deskripsi pekerjaan...",
+                  charCounterCount: true,
+                  toolbarSticky: true,
+                  heightMin: 200,
+                }}
+              />
             </div>
           </form>
         </div>

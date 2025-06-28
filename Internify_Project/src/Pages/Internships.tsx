@@ -4,10 +4,13 @@ import bghero2 from "../assets/hero1about.png";
 import Navbar from "../Layout/Navbar";
 import Footer from "../Layout/Footer";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Internships = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
 
   type Internship = {
     id: string;
@@ -72,6 +75,11 @@ const Internships = () => {
       intern.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       intern.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  useEffect(() => {
+    const param = searchParams.get("search") || "";
+    setSearchTerm(param);
+  }, [searchParams]);
   return (
     <div className="interships-container-body bg-[#F8F9FA] min-h-screen">
       {/* Hero Section */}
