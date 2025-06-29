@@ -1,5 +1,5 @@
 import Navbar from "../Layout/Navbar";
-import faried from "../assets/faried.jpg";
+import faried from "../assets/faried.jpeg";
 import reihan from "../assets/reihan.jpeg";
 import yohan from "../assets/yohanes.jpeg";
 import shafa from "../assets/shafa.jpeg";
