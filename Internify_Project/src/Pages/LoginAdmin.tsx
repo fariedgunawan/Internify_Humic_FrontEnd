@@ -7,11 +7,13 @@ const LoginAdmin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/auth-api/login",
+        `${import.meta.env.VITE_API_BASE_URL}/auth-api/login`,
         {
           method: "POST",
           headers: {
@@ -25,14 +27,14 @@ const LoginAdmin = () => {
 
       if (response.ok) {
         document.cookie = `token=${data.token}; path=/;`;
-
-        //navigate to admin dashboard guys
-        navigate("/AddProductAdmin");
+        navigate("/InternshipsList");
       } else {
         setErrorMsg(data.message || "Login failed");
       }
     } catch (error) {
       setErrorMsg("Something went wrong");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -108,10 +110,37 @@ const LoginAdmin = () => {
 
           {/* Sign In Button */}
           <button
-            className="bg-[#2A4365] text-[20px] text-white w-full p-3 rounded-xl font-medium"
+            className="bg-[#2A4365] hover:bg-[#7f9bc3] cursor-pointer text-[20px] text-white w-full p-3 rounded-xl font-medium flex justify-center items-center gap-2"
             onClick={handleLogin}
+            disabled={isLoading}
           >
-            SignIn
+            {isLoading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  ></path>
+                </svg>
+                Loading...
+              </>
+            ) : (
+              "Sign In"
+            )}
           </button>
 
           <h2 className="font-semibold flex flex-row items-center gap-2 text-red-700">

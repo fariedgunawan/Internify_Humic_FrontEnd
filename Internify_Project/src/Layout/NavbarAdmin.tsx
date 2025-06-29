@@ -5,7 +5,6 @@ const NavbarAdmin = () => {
   const [namaDepan, setNamaDepan] = useState("");
 
   useEffect(() => {
-    // Ambil token langsung dari cookie yang sudah dibuat sebelumnya
     const token = document.cookie
       .split("; ")
       .find((row) => row.startsWith("token="))
@@ -13,11 +12,10 @@ const NavbarAdmin = () => {
 
     if (!token) return;
 
-    // Fetch data user
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/auth-api/me",
+          `${import.meta.env.VITE_API_BASE_URL}/auth-api/me`,
           {
             method: "GET",
             headers: {
@@ -57,7 +55,7 @@ const NavbarAdmin = () => {
           />
         </svg>
         <h2 className="text-white text-[16px] font-semibold">
-          Hai, {namaDepan || "User"}
+          Hai, {namaDepan}
         </h2>
       </div>
     </div>

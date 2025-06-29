@@ -26,7 +26,7 @@ const EditPartnerships = () => {
 
       try {
         const response = await fetch(
-          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/get/${id}`
+          `${import.meta.env.VITE_API_BASE_URL}/partnership-api/get/${id}`
         );
 
         const result = await response.json();
@@ -36,8 +36,7 @@ const EditPartnerships = () => {
         if (response.ok) {
           setNamaPartner(result.data[0].nama_partner);
           setPreviewUrl(
-            "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net" +
-              result.data[0].image_path
+            `${import.meta.env.VITE_API_BASE_URL}` + result.data[0].image_path
           );
         } else {
           setError(result.message || "Gagal memuat data partnership.");
@@ -83,7 +82,7 @@ const EditPartnerships = () => {
 
     try {
       const response = await fetch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/update/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/partnership-api/update/${id}`,
         {
           method: "PATCH",
           headers: {
@@ -118,7 +117,7 @@ const EditPartnerships = () => {
 
     try {
       const response = await fetch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/delete/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/partnership-api/delete/${id}`,
         {
           method: "DELETE",
           headers: {

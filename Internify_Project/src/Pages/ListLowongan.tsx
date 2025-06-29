@@ -24,9 +24,7 @@ const ListLowongan = () => {
 
   const fetchLowongan = () => {
     axios
-      .get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get"
-      )
+      .get(`${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/get`)
       .then((res) => {
         setLowongans(res.data.data || []);
       })
@@ -51,7 +49,7 @@ const ListLowongan = () => {
       }
 
       await axios.delete(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/delete/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/delete/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,7 +99,7 @@ const ListLowongan = () => {
               />
               <button
                 onClick={() => navigate("/AddProductAdmin")}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg"
+                className="bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold px-4 py-2 rounded-lg"
               >
                 Tambah
               </button>

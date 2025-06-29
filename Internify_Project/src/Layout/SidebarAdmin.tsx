@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const SidebarAdmin = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <div className="side-bar-section bg-[#EDF2F7] w-[300px] min-h-[90vh] flex flex-col justify-between p-4">
       <div className="container-sidebar">
         <h2 className="font-semibold text-[#2C5282] text-[20px]">Menu</h2>
         <div className="list-of-sidebar flex flex-col p-7 gap-4">
           <div
-            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            className={`text-container flex flex-row gap-3 p-3 items-center cursor-pointer rounded-2xl ${
+              location.pathname === "/ProductList"
+                ? "bg-[#D3DFEA] font-bold"
+                : "hover:bg-[#D3DFEA] "
+            }`}
             onClick={() => navigate("/ProductList")}
           >
             <svg
@@ -25,10 +31,14 @@ const SidebarAdmin = () => {
                 d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"
               />
             </svg>
-            <h2 className="text-[#2C5282]">Produk</h2>
+            <h2 className="text-[#2C5282]">Project</h2>
           </div>
           <div
-            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            className={`text-container flex flex-row gap-3 p-3 items-center cursor-pointer rounded-2xl ${
+              location.pathname === "/LowonganList"
+                ? "bg-[#D3DFEA] font-bold"
+                : "hover:bg-[#D3DFEA]"
+            }`}
             onClick={() => navigate("/LowonganList")}
           >
             <svg
@@ -49,7 +59,11 @@ const SidebarAdmin = () => {
             <h2 className="text-[#2C5282]">Lowongan</h2>
           </div>
           <div
-            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            className={`text-container flex flex-row gap-3 p-3 items-center cursor-pointer rounded-2xl ${
+              location.pathname === "/PartnershipAdmin"
+                ? "bg-[#D3DFEA] font-bold"
+                : "hover:bg-[#D3DFEA]"
+            }`}
             onClick={() => navigate("/PartnershipAdmin")}
           >
             <svg
@@ -70,7 +84,11 @@ const SidebarAdmin = () => {
             <h2 className="text-[#2C5282]">Partnership</h2>
           </div>
           <div
-            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            className={`text-container flex flex-row gap-3 p-3 items-center cursor-pointer rounded-2xl ${
+              location.pathname === "/InternshipsList"
+                ? "bg-[#D3DFEA] font-bold"
+                : "hover:bg-[#D3DFEA]"
+            }`}
             onClick={() => navigate("/InternshipsList")}
           >
             <svg
@@ -91,7 +109,11 @@ const SidebarAdmin = () => {
             <h2 className="text-[#2C5282]">Pelamar</h2>
           </div>
           <div
-            className="text-container flex flex-row gap-3 p-3 items-center hover:bg-[#D3DFEA] rounded-2xl"
+            className={`text-container flex flex-row gap-3 p-3 items-center cursor-pointer rounded-2xl ${
+              location.pathname === "/TerarsipkanAdmin"
+                ? "bg-[#D3DFEA] font-bold"
+                : "hover:bg-[#D3DFEA]"
+            }`}
             onClick={() => navigate("/TerarsipkanAdmin")}
           >
             <svg
@@ -114,7 +136,14 @@ const SidebarAdmin = () => {
         </div>
       </div>
 
-      <div className="logout flex flex-row items-center p-7 gap-4">
+      <div
+        className="logout flex flex-row items-center cursor-pointer gap-4 p-3 rounded-2xl hover:bg-[#F8D2D2] hover:font-bold mx-7"
+        onClick={() => {
+          document.cookie =
+            "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+          navigate("/");
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -130,17 +159,7 @@ const SidebarAdmin = () => {
           />
         </svg>
 
-        <button
-          className="text-start text-[#C3423F] text-[16px] font-semibold"
-          onClick={() => {
-            // Hapus cookie token biar gabisa url injection
-            document.cookie =
-              "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-            navigate("/");
-          }}
-        >
-          Keluar
-        </button>
+        <h2 className="text-[#C3423F] text-[16px] font-semibold">Keluar</h2>
       </div>
     </div>
   );

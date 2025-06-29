@@ -25,14 +25,11 @@ const InternshipList = () => {
       ?.split("=")[1];
 
     axios
-      .get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lamaran-magang-api/get",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .get(`${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/get`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setApplications(res.data.data || []);
       })
@@ -77,7 +74,7 @@ const InternshipList = () => {
 
     try {
       const response = await axios.get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lamaran-magang-api/export",
+        `${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/export`,
         {
           responseType: "blob",
           headers: {

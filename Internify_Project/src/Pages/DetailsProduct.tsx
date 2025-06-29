@@ -20,9 +20,7 @@ const DetailsProduct = () => {
   useEffect(() => {
     if (!id) return;
 
-    fetch(
-      `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/get/${id}`
-    )
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/get/${id}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && data.data && data.data.length > 0) {
@@ -63,7 +61,7 @@ const DetailsProduct = () => {
       <div className="content-container flex flex-col gap-[60px] mx-4 md:mx-[100px]">
         {/* Image */}
         <img
-          src={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${product.image_path}`}
+          src={`${import.meta.env.VITE_API_BASE_URL}${product.image_path}`}
           alt={product.nama_project}
           className="w-full max-h-[500px] object-cover rounded-xl"
         />

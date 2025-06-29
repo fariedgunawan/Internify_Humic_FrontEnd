@@ -50,7 +50,7 @@ const AddPartnershipAdmin = () => {
 
     try {
       const response = await fetch(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/add",
+        `${import.meta.env.VITE_API_BASE_URL}/partnership-api/add`,
         {
           method: "POST",
           headers: {
@@ -86,7 +86,7 @@ const AddPartnershipAdmin = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-[#4CAF50] text-white px-6 py-3 rounded-xl w-[200px] font-semibold"
+              className="bg-[#1F4A92] hover:bg-[#677c9f] text-white px-6 py-2 rounded-md font-medium"
             >
               Submit
             </button>

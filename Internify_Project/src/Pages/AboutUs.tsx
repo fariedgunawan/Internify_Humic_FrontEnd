@@ -77,9 +77,7 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(
-      "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/get"
-    )
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/get`)
       .then((res) => res.json())
       .then((data) => {
         setResearchProducts(data.data);
@@ -90,9 +88,7 @@ const AboutUs = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/get"
-    )
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/partnership-api/get`)
       .then((res) => res.json())
       .then((data) => {
         setPartners(data.data);
@@ -206,7 +202,7 @@ const AboutUs = () => {
           {partners.map((partner) => (
             <img
               key={partner.id}
-              src={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${partner.image_path}`}
+              src={`${import.meta.env.VITE_API_BASE_URL}${partner.image_path}`}
               alt={`Partnership ${partner.nama_partner}`}
               className="w-16 sm:w-20 md:w-24"
             />
@@ -279,7 +275,7 @@ const AboutUs = () => {
               onClick={() => navigate(`/DetailsProduct/${item.id}`)}
             >
               <img
-                src={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${item.image_path}`}
+                src={`${import.meta.env.VITE_API_BASE_URL}${item.image_path}`}
                 alt={item.nama_project}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
