@@ -14,7 +14,7 @@ const PartnershipsList = () => {
     const fetchPartnerships = async () => {
       try {
         const response = await fetch(
-          "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/get"
+          `${import.meta.env.VITE_API_BASE_URL}/partnership-api/get`
         );
         const result = await response.json();
         if (response.ok) {
@@ -48,7 +48,7 @@ const PartnershipsList = () => {
 
     try {
       const response = await fetch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/partnership-api/delete/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/partnership-api/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -85,7 +85,7 @@ const PartnershipsList = () => {
                 Sembunyikan semua
               </button>
               <button
-                className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] text-white font-semibold"
+                className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold"
                 onClick={() => navigate("/AddPartnership")}
               >
                 Tambah

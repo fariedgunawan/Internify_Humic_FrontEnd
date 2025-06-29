@@ -30,7 +30,9 @@ const Internships = () => {
   useEffect(() => {
     axios
       .get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/kelompok-all"
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/lowongan-magang-api/get/kelompok-all`
       )
       .then((res) => {
         setCategories(res.data.data || []);
@@ -40,12 +42,13 @@ const Internships = () => {
       });
   }, []);
 
-  // Fetch internship awal dan saat kategori berubah
   useEffect(() => {
     const fetchInternships = () => {
       const url = selectedCategory
-        ? `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/kelompok/${selectedCategory}`
-        : `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get`;
+        ? `${
+            import.meta.env.VITE_API_BASE_URL
+          }/lowongan-magang-api/get/kelompok/${selectedCategory}`
+        : `${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/get`;
 
       axios
         .get(url)

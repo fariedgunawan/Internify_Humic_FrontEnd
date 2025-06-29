@@ -12,9 +12,7 @@ const InternshipDetails = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get"
-      )
+      .get(`${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/get`)
       .then((res) => {
         const selected = res.data.data.find((item: any) => item.id === id);
         setIntern(selected);

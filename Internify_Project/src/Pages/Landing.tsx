@@ -1,9 +1,9 @@
 import Navbar from "../Layout/Navbar";
 import team from "../assets/teamwokr.jpg";
-import person1 from "../assets/person1.png";
-import person2 from "../assets/person2.png";
-import person3 from "../assets/person3.png";
-import person4 from "../assets/person4.png";
+import person1 from "../assets/reihan.jpeg";
+import person2 from "../assets/yohanes.jpeg";
+import person3 from "../assets/shafa.jpeg";
+import person4 from "../assets/reinhard.jpeg";
 import bghero1 from "../assets/hero1.png";
 import Footer from "../Layout/Footer";
 import Faq from "../Layout/Faq";
@@ -29,9 +29,7 @@ const Landing = () => {
   const [internships, setInternships] = useState<Internship[]>([]);
 
   useEffect(() => {
-    fetch(
-      "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get"
-    )
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/get`)
       .then((res) => res.json())
       .then((data) => {
         setInternships(data.data);
@@ -156,7 +154,7 @@ const Landing = () => {
             suportif
           </p>
           <p className="text-[16px] text-[#C3423F] font-bold mt-[20px]">
-            Indra, Humic Internship Batch 3 2025
+            Reinhard, Humic Internship Batch 3 2025
           </p>
         </div>
       </div>
@@ -167,7 +165,7 @@ const Landing = () => {
           Jelajahi posisi yang kamu inginkan
         </h2>
 
-        <div className="card-container mt-[110px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-[60px] xl:gap-[80px] mx-3 sm:mx-[10px]">
+        <div className="card-container mt-[110px] flex flex-wrap items-center justify-center gap-10 sm:gap-[60px] xl:gap-[80px] mx-3 sm:mx-[10px]">
           {internships.map((intern) => (
             <div
               key={intern.id}
@@ -176,7 +174,9 @@ const Landing = () => {
               <div
                 className="absolute inset-0"
                 style={{
-                  backgroundImage: `url(https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${intern.image_path})`,
+                  backgroundImage: `url(${import.meta.env.VITE_API_BASE_URL}${
+                    intern.image_path
+                  })`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}

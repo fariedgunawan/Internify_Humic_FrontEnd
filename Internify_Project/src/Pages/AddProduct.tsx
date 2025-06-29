@@ -21,7 +21,9 @@ const AddProduct = () => {
   useEffect(() => {
     axios
       .get(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/kelompok-all"
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/lowongan-magang-api/get/kelompok-all`
       )
       .then((res) => {
         setKelompokOptions(res.data.data);
@@ -57,7 +59,7 @@ const AddProduct = () => {
 
     try {
       await axios.post(
-        "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/add",
+        `${import.meta.env.VITE_API_BASE_URL}/lowongan-magang-api/add`,
         formData,
         {
           headers: {
@@ -102,7 +104,7 @@ const AddProduct = () => {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-semibold">Tambah Lowongan</h2>
             <button
-              className="bg-[#1F4A92] text-white px-6 py-2 rounded-md font-medium"
+              className="bg-[#1F4A92] hover:bg-[#677c9f] text-white px-6 py-2 rounded-md font-medium"
               onClick={handleSubmit}
             >
               Submit

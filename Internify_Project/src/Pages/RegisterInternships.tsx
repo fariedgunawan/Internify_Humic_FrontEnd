@@ -59,7 +59,7 @@ const RegisterInternships = () => {
 
     try {
       const response = await axios.post(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lamaran-magang-api/add/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/add/${id}`,
         data,
         {
           headers: {
@@ -87,7 +87,9 @@ const RegisterInternships = () => {
     const fetchPosisi = async () => {
       try {
         const response = await axios.get(
-          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lowongan-magang-api/get/id/${id}`
+          `${
+            import.meta.env.VITE_API_BASE_URL
+          }/lowongan-magang-api/get/id/${id}`
         );
 
         const posisiValue = response.data?.data?.posisi;

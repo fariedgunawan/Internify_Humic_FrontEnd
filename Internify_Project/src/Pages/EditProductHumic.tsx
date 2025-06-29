@@ -21,7 +21,7 @@ const EditProductHumic = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/get/${id}`
+          `${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/get/${id}`
         );
 
         const dataArray = response.data.data;
@@ -69,7 +69,7 @@ const EditProductHumic = () => {
 
     try {
       await axios.patch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/update/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/update/${id}`,
         formData,
         {
           headers: {

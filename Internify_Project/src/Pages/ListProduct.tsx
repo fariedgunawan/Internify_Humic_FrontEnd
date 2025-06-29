@@ -17,7 +17,7 @@ const ListProduct = () => {
     const fetchProjects = async () => {
       try {
         const response = await fetch(
-          "https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/get"
+          `${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/get`
         );
         const result = await response.json();
         if (response.ok) {
@@ -51,7 +51,7 @@ const ListProduct = () => {
 
     try {
       const response = await fetch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/hasil-research-api/delete/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/hasil-research-api/delete/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -83,7 +83,7 @@ const ListProduct = () => {
           <div className="title-container flex flex-row justify-between items-center mb-[50px]">
             <h2 className="text-[24px] font-semibold">Daftar Project</h2>
             <button
-              className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] text-white font-semibold"
+              className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold"
               onClick={() => navigate("/AddProductHumic")}
             >
               Tambah

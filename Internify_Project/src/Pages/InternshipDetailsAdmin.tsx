@@ -16,7 +16,7 @@ const InternshipDetailsAdmin = () => {
   useEffect(() => {
     axios
       .get(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lamaran-magang-api/get/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/get/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ const InternshipDetailsAdmin = () => {
   const handleStatusUpdate = (status: "diterima" | "ditolak") => {
     axios
       .patch(
-        `https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net/lamaran-magang-api/update/${id}`,
+        `${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/update/${id}`,
         { status },
         {
           headers: {
@@ -59,7 +59,23 @@ const InternshipDetailsAdmin = () => {
       <div className="sidebar-content flex flex-row">
         <SidebarAdmin />
         <div className="content-section p-10 bg-white w-[100rem]">
-          <h2 className="text-[24px] font-semibold mb-10">Detail Pelamar</h2>
+          <div className="container-header flex flex-row items-center justify-between mb-10">
+            <h2 className="text-[24px] font-semibold">Detail Pelamar</h2>
+            {/* Status Indikator */}
+            <div className="mt-10">
+              <span
+                className={`px-4 py-2 rounded-lg text-white font-semibold ${
+                  applicant.status === "diterima"
+                    ? "bg-green-500"
+                    : applicant.status === "ditolak"
+                    ? "bg-red-500"
+                    : "bg-gray-500"
+                }`}
+              >
+                {applicant.status.toUpperCase()}
+              </span>
+            </div>
+          </div>
 
           {/* Header */}
           <div className="flex justify-between items-start mb-10">
@@ -119,7 +135,9 @@ const InternshipDetailsAdmin = () => {
               <div className="flex items-center gap-2">
                 <h2 className="font-semibold">CV:</h2>
                 <a
-                  href={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${applicant.cv_path}`}
+                  href={`${import.meta.env.VITE_API_BASE_URL}${
+                    applicant.cv_path
+                  }`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#D78108] text-white px-4 py-2 rounded-xl"
@@ -130,7 +148,9 @@ const InternshipDetailsAdmin = () => {
               <div className="flex items-center gap-2">
                 <h2 className="font-semibold">Portofolio:</h2>
                 <a
-                  href={`https://internify-backend-ckdrhfhzbahnesdm.indonesiacentral-01.azurewebsites.net${applicant.portofolio_path}`}
+                  href={`${import.meta.env.VITE_API_BASE_URL}${
+                    applicant.portofolio_path
+                  }`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-[#995010] text-white px-4 py-2 rounded-xl"
@@ -145,21 +165,6 @@ const InternshipDetailsAdmin = () => {
           <div>
             <h2 className="font-semibold mb-3">Motivasi</h2>
             <p className="leading-7">{applicant.motivasi}</p>
-          </div>
-
-          {/* Status Indikator */}
-          <div className="mt-10">
-            <span
-              className={`px-4 py-2 rounded-lg text-white font-semibold ${
-                applicant.status === "diterima"
-                  ? "bg-green-500"
-                  : applicant.status === "ditolak"
-                  ? "bg-red-500"
-                  : "bg-gray-500"
-              }`}
-            >
-              {applicant.status.toUpperCase()}
-            </span>
           </div>
         </div>
       </div>
