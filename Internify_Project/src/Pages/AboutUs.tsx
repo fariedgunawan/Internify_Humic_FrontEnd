@@ -20,6 +20,7 @@ const AboutUs = () => {
   const itemsPerPage = 8;
 
   const [partners, setPartners] = useState<Partner[]>([]);
+  const [hasPartner, setHasPartner] = useState(true);
   const [researchProducts, setResearchProducts] = useState<ResearchProduct[]>(
     []
   );
@@ -91,10 +92,16 @@ const AboutUs = () => {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/partnership-api/get`)
       .then((res) => res.json())
       .then((data) => {
-        setPartners(data.data);
+        if (data.message === "No partnership data") {
+          setHasPartner(false);
+        } else {
+          setPartners(data.data);
+          setHasPartner(true);
+        }
       })
       .catch((error) => {
         console.error("Failed to fetch partnership data:", error);
+        setHasPartner(false);
       });
   }, []);
 
@@ -188,27 +195,31 @@ const AboutUs = () => {
       </div>
 
       {/* Hero Section 2 Partnership */}
-      <div className="hero-2-partnership bg-[#FAF0EF] flex flex-col md:flex-row items-center justify-between mt-12 px-5 sm:px-20 py-16">
-        <div className="caption-hero-2 flex flex-col items-start w-full md:w-[540px] mb-8 md:mb-0">
-          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">
-            Partnership
-          </h2>
-          <h2 className="font-normal text-sm sm:text-base mt-2">
-            Kami bersama-sama menciptakan solusi yang memberdayakan bisnis dan
-            meningkatkan efisiensi operasional.
-          </h2>
+      {hasPartner && (
+        <div className="hero-2-partnership bg-[#FAF0EF] flex flex-col md:flex-row items-center justify-between mt-12 px-5 sm:px-20 py-16">
+          <div className="caption-hero-2 flex flex-col items-start w-full md:w-[540px] mb-8 md:mb-0">
+            <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl">
+              Partnership
+            </h2>
+            <h2 className="font-normal text-sm sm:text-base mt-2">
+              Kami bersama-sama menciptakan solusi yang memberdayakan bisnis dan
+              meningkatkan efisiensi operasional.
+            </h2>
+          </div>
+          <div className="image-hero-2 flex flex-row flex-wrap justify-start md:justify-center items-center gap-6 md:gap-12 max-w-full md:max-w-[700px]">
+            {partners.map((partner) => (
+              <img
+                key={partner.id}
+                src={`${import.meta.env.VITE_API_BASE_URL}${
+                  partner.image_path
+                }`}
+                alt={`Partnership ${partner.nama_partner}`}
+                className="w-16 sm:w-20 md:w-24"
+              />
+            ))}
+          </div>
         </div>
-        <div className="image-hero-2 flex flex-row flex-wrap justify-start md:justify-center items-center gap-6 md:gap-12 max-w-full md:max-w-[700px]">
-          {partners.map((partner) => (
-            <img
-              key={partner.id}
-              src={`${import.meta.env.VITE_API_BASE_URL}${partner.image_path}`}
-              alt={`Partnership ${partner.nama_partner}`}
-              className="w-16 sm:w-20 md:w-24"
-            />
-          ))}
-        </div>
-      </div>
+      )}
 
       {/* Hero section 3 */}
       <div className="hero-3-research-product mt-12 px-5 sm:px-20">
