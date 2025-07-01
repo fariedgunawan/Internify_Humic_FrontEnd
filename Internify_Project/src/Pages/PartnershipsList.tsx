@@ -81,9 +81,6 @@ const PartnershipsList = () => {
             <h2 className="text-[24px] font-semibold">Partnership</h2>
 
             <div className="right-section flex flex-row items-center gap-3">
-              <button className="px-[20px] py-[10px] rounded-xl bg-[#C3423F] text-white font-semibold">
-                Sembunyikan semua
-              </button>
               <button
                 className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold"
                 onClick={() => navigate("/AddPartnership")}
@@ -114,7 +111,10 @@ const PartnershipsList = () => {
                       {/* Dummy date */}
                       <td className="px-6 py-3 flex gap-2">
                         {/* Tombol View */}
-                        <button className="bg-[#3BE21D] text-white p-2 rounded-xl">
+                        <button
+                          className="bg-[#3BE21D] text-white p-2 rounded-xl"
+                          onClick={() => window.open("/AboutUs")}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

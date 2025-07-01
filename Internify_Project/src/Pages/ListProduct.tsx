@@ -108,7 +108,13 @@ const ListProduct = () => {
                     </td>
                     <td className="px-6 py-3 flex gap-2">
                       {/* Tombol View */}
-                      <button className="bg-[#3BE21D] text-white p-2 rounded-xl">
+                      {/* Tombol View */}
+                      <button
+                        className="bg-[#3BE21D] text-white p-2 rounded-xl"
+                        onClick={() =>
+                          window.open(`/DetailsProduct/${project.id}`, "_blank")
+                        }
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"

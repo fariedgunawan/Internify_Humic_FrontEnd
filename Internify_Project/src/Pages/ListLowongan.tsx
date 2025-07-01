@@ -127,7 +127,7 @@ const ListLowongan = () => {
                       <button
                         className="bg-[#3BE21D] text-white p-2 rounded-xl"
                         onClick={() =>
-                          navigate(`/InternshipDetailAdmin/${low.id}`)
+                          window.open(`/Details/${low.id}`, "_blank")
                         }
                       >
                         <svg
