@@ -86,7 +86,7 @@ const AddPartnershipAdmin = () => {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-[#1F4A92] hover:bg-[#677c9f] text-white px-6 py-2 rounded-md font-medium"
+              className="bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white px-6 py-2 rounded-md font-medium"
             >
               Submit
             </button>

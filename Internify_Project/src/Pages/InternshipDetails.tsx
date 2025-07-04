@@ -115,7 +115,7 @@ const InternshipDetails = () => {
           {/* Apply Button */}
           <div className="self-start md:self-center">
             <button
-              className="bg-[#C3423F] text-white text-sm md:text-[14px] font-semibold px-6 py-2 md:px-9 md:py-3 rounded-2xl shadow-xl"
+              className="bg-[#C3423F] hover:bg-[#b36462] cursor-pointer text-white text-sm md:text-[14px] font-semibold px-6 py-2 md:px-9 md:py-3 rounded-2xl shadow-xl"
               onClick={() => navigate(`/RegisterIntern/${intern.id}`)}
             >
               Apply

@@ -82,7 +82,7 @@ const PartnershipsList = () => {
 
             <div className="right-section flex flex-row items-center gap-3">
               <button
-                className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold"
+                className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white font-semibold"
                 onClick={() => navigate("/AddPartnership")}
               >
                 Tambah
@@ -96,7 +96,7 @@ const PartnershipsList = () => {
                 <tr className="text-left">
                   <th className="px-6 py-3">Nama</th>
                   <th className="px-6 py-3">Icon</th>
-                  <th className="px-6 py-3">Tanggal Unggah</th>
+
                   <th className="px-6 py-3">Aksi</th>
                 </tr>
               </thead>
@@ -107,12 +107,10 @@ const PartnershipsList = () => {
                     <tr key={partner.id} className="hover:bg-gray-50">
                       <td className="px-6 py-3">{partner.nama_partner}</td>
                       <td className="px-6 py-3">{fileName}</td>
-                      <td className="px-6 py-3">01/01/2024</td>{" "}
-                      {/* Dummy date */}
                       <td className="px-6 py-3 flex gap-2">
                         {/* Tombol View */}
                         <button
-                          className="bg-[#3BE21D] text-white p-2 rounded-xl"
+                          className="bg-[#3BE21D] cursor-pointer text-white p-2 rounded-xl"
                           onClick={() => window.open("/AboutUs")}
                         >
                           <svg
@@ -138,7 +136,7 @@ const PartnershipsList = () => {
 
                         {/* Tombol Edit */}
                         <button
-                          className="bg-[#2CAEFF] text-white p-2 rounded-xl"
+                          className="bg-[#2CAEFF] cursor-pointer text-white p-2 rounded-xl"
                           onClick={() =>
                             navigate(`/EditPartnership/${partner.id}`)
                           }
@@ -161,7 +159,7 @@ const PartnershipsList = () => {
 
                         {/* Tombol Hapus */}
                         <button
-                          className="bg-[#E41E1E] text-white p-2 rounded-xl"
+                          className="bg-[#E41E1E] cursor-pointer text-white p-2 rounded-xl"
                           onClick={() => handleDelete(partner.id)}
                         >
                           <svg

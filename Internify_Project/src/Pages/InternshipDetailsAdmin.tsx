@@ -91,13 +91,13 @@ const InternshipDetailsAdmin = () => {
             <div className="flex gap-3">
               <button
                 onClick={() => handleStatusUpdate("diterima")}
-                className="bg-[#3BB525] hover:bg-green-600 text-white px-3 py-2 rounded-xl"
+                className="bg-[#3BB525] hover:bg-green-600 cursor-pointer text-white px-3 py-2 rounded-xl"
               >
                 Terima
               </button>
               <button
                 onClick={() => handleStatusUpdate("ditolak")}
-                className="bg-[#C3423F] hover:bg-red-600 text-white px-3 py-2 rounded-xl"
+                className="bg-[#C3423F] hover:bg-red-600 cursor-pointer text-white px-3 py-2 rounded-xl"
               >
                 Tolak
               </button>

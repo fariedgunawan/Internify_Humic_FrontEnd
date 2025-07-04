@@ -3,23 +3,23 @@ import { useState } from "react";
 const faqData = [
   {
     question: "Bagaimana cara magang disini?",
-    answer: "Yes, we ship to over 50 countries worldwide with reliable partners.",
+    answer: "Pilih Internship, Kemudian Lakukan Proses Administrasi",
   },
   {
     question: "Apakah saya bisa melamar lebih dari satu lowongan?",
-    answer: "Once shipped, you will receive a tracking link via email or SMS.",
+    answer: "Tidak Bisa, Hanya Bisa Melamar 1 Lowongan",
   },
   {
     question: "Bagaimana saya tahu jika lamaran saya diterima atau ditolak?",
-    answer: "We accept returns within 30 days with the original packaging and receipt.",
+    answer: "Sistem Akan Mengirimkan Pesan Diterima/Ditolak Ke Email Anda",
   },
   {
     question: "Berapa lama durasi magang di Humic?",
-    answer: "We accept returns within 30 days with the original packaging and receipt.",
+    answer: "Cek Instagram Kita Yah, Disana Tertera Durasi Magangnya",
   },
   {
     question: "Apakah data pribadi saya aman?",
-    answer: "Once shipped, you will receive a tracking link via email or SMS.",
+    answer: "Data Pribadi Dipastikan Aman, Sistem Ini Memiliki Admin Dashboard",
   },
 ];
 
@@ -42,7 +42,7 @@ const Faq = () => {
       <div className="faq-content-list space-y-6 w-full lg:w-[700px]">
         {faqData.map((faq, index) => (
           <div key={index} className="bg-[#FAF0EF] shadow-md rounded-sm">
-            <button onClick={() => toggleItem(index)} className="w-full flex items-center justify-between p-4 focus:outline-none">
+            <button onClick={() => toggleItem(index)} className="w-full flex items-center cursor-pointer justify-between p-4 focus:outline-none">
               <span className="text-[16px] font-semibold text-left text-[#C3423F]">{faq.question}</span>
               <span className="text-[20px] font-bold text-[#C3423F]">{openIndex === index ? "-" : "+"}</span>
             </button>

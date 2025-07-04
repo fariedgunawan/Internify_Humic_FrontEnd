@@ -150,14 +150,14 @@ const EditPartnerships = () => {
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="bg-[#4CAF50] text-white px-6 py-3 rounded-xl w-[200px] font-semibold"
+                className="bg-[#4CAF50] hover:bg-[#89c58c] cursor-pointer text-white px-6 py-3 rounded-xl w-[200px] font-semibold"
               >
                 Update
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
-                className="bg-[#E53935] text-white px-6 py-3 rounded-xl w-[200px] font-semibold"
+                className="bg-[#E53935] hover:bg-[#9e5857] cursor-pointer text-white px-6 py-3 rounded-xl w-[200px] font-semibold"
               >
                 Hapus
               </button>
