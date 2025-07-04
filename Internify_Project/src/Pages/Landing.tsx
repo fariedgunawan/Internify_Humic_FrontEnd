@@ -169,7 +169,8 @@ const Landing = () => {
           {internships.map((intern) => (
             <div
               key={intern.id}
-              className="relative w-64 h-64 rounded-xl overflow-hidden shadow-lg"
+              className="relative w-64 h-64 rounded-xl overflow-hidden shadow-lg cursor-pointer transform transition duration-300 hover:scale-105"
+              onClick={() => navigate(`/Details/${intern.id}`)}
             >
               <div
                 className="absolute inset-0"

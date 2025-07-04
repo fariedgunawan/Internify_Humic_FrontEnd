@@ -104,7 +104,7 @@ const AddProduct = () => {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-semibold">Tambah Lowongan</h2>
             <button
-              className="bg-[#1F4A92] hover:bg-[#677c9f] text-white px-6 py-2 rounded-md font-medium"
+              className="bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white px-6 py-2 rounded-md font-medium"
               onClick={handleSubmit}
             >
               Submit
@@ -210,7 +210,7 @@ const AddProduct = () => {
                 model={jobdesk}
                 onModelChange={(model: any) => setJobdesk(model)}
                 config={{
-                  placeholderText: "Tulis deskripsi pekerjaan...",
+                  placeholderText: "Tulis deskripsi lowongan...",
                   charCounterCount: true,
                   toolbarSticky: true,
                   heightMin: 200,

@@ -13,12 +13,11 @@ const Navbar = () => {
       document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
     } else {
       navigate("/", { replace: false });
-      // Tunggu sampai halaman Landing ter-load, lalu scroll ke footer
       setTimeout(() => {
         document
           .getElementById("footer")
           ?.scrollIntoView({ behavior: "smooth" });
-      }, 500); // delay bisa disesuaikan
+      }, 500); 
     }
   };
 
@@ -60,19 +59,19 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6 text-[18px] font-semibold">
           <button
             onClick={() => navigate("/AboutUs")}
-            className="hover:text-blue-600 transition"
+            className="hover:text-blue-600 transition cursor-pointer"
           >
             About Us
           </button>
           <button
             onClick={handleContactClick}
-            className="hover:text-blue-600 transition"
+            className="hover:text-blue-600 transition cursor-pointer"
           >
             Contact Us
           </button>
           <button
             onClick={() => navigate("/Internships")}
-            className="hover:text-blue-600 transition"
+            className="hover:text-blue-600 transition cursor-pointer"
           >
             Internship
           </button>

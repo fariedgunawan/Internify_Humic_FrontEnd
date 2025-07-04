@@ -57,7 +57,7 @@ const AddProductHumic = () => {
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-xl font-semibold">Tambah Research Project</h2>
             <button
-              className="bg-[#1F4A92] hover:bg-[#677c9f] text-white px-6 py-2 rounded-md font-medium"
+              className="bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white px-6 py-2 rounded-md font-medium"
               onClick={handleSubmit}
             >
               Submit
@@ -73,7 +73,7 @@ const AddProductHumic = () => {
                   className="border border-gray-300 rounded-lg p-3"
                   value={namaProject}
                   onChange={(e) => setNamaProject(e.target.value)}
-                  placeholder="Contoh: Sistem Rekomendasi Tanaman"
+                  placeholder="Masukan Nama Project"
                 />
               </div>
 
@@ -84,7 +84,7 @@ const AddProductHumic = () => {
                   className="border border-gray-300 rounded-lg p-3"
                   value={linkProject}
                   onChange={(e) => setLinkProject(e.target.value)}
-                  placeholder="https://github.com/..."
+                  placeholder="Masukan Link Disini"
                 />
               </div>
 
@@ -109,7 +109,7 @@ const AddProductHumic = () => {
                 model={deskripsi}
                 onModelChange={(model: any) => setDeskripsi(model)}
                 config={{
-                  placeholderText: "Tulis deskripsi penelitian di sini...",
+                  placeholderText: "Tulis deskripsi project di sini...",
                   charCounterCount: true,
                   toolbarSticky: true,
                   heightMin: 200,

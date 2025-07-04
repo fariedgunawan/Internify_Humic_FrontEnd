@@ -99,7 +99,7 @@ const ListLowongan = () => {
               />
               <button
                 onClick={() => navigate("/AddProductAdmin")}
-                className="bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold px-4 py-2 rounded-lg"
+                className="bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white font-semibold px-4 py-2 rounded-lg"
               >
                 Tambah
               </button>
@@ -125,7 +125,7 @@ const ListLowongan = () => {
                     <td className="px-6 py-3 flex gap-2">
                       {/* Tombol View */}
                       <button
-                        className="bg-[#3BE21D] text-white p-2 rounded-xl"
+                        className="bg-[#3BE21D] text-white p-2 rounded-xl cursor-pointer"
                         onClick={() =>
                           window.open(`/Details/${low.id}`, "_blank")
                         }
@@ -153,7 +153,7 @@ const ListLowongan = () => {
 
                       {/* Tombol Hapus */}
                       <button
-                        className="bg-[#E41E1E] text-white p-2 rounded-xl"
+                        className="bg-[#E41E1E] text-white p-2 rounded-xl cursor-pointer"
                         onClick={() => handleDelete(low.id)}
                       >
                         <svg

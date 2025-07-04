@@ -23,12 +23,22 @@ const Footer = () => {
             Jawa Barat, Indonesia. 40257
           </p>
           <div className="icons-media flex flex-row items-center gap-4 mt-[40px]">
-            <div className="instagram p-[10px] border-2 rounded-full">
+            <a
+              href="https://www.instagram.com/fariedgnwn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="instagram p-[10px] border-2 rounded-full"
+            >
               <FaInstagram className="text-[24px]" />
-            </div>
-            <div className="linkedin p-[10px] border-2 rounded-full">
+            </a>
+            <a
+              href="https://www.linkedin.com/company/humic-engineering/about/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="linkedin p-[10px] border-2 rounded-full"
+            >
               <FaLinkedinIn className="text-[24px]" />
-            </div>
+            </a>
             <div className="mail p-[10px] border-2 rounded-full">
               <MdOutlineEmail className="text-[24px]" />
             </div>

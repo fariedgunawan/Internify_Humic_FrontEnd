@@ -204,12 +204,15 @@ const RegisterInternships = () => {
             <input
               type="text"
               className="w-full border-2 border-[#A9B5C0] rounded-md p-2 mt-3 text-black"
-              placeholder="JavaScript, UI/UX, Figma"
+              placeholder="JavaScript,Python,Figma"
               value={formData.relevant_skills}
               onChange={(e) =>
                 setFormData({ ...formData, relevant_skills: e.target.value })
               }
             />
+            <p className="text-sm text-[#C3423F] mt-1">
+              *separate with commas
+            </p>
           </div>
 
           <div>
@@ -281,7 +284,7 @@ const RegisterInternships = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`px-9 py-3 rounded-xl font-bold shadow-2xl ${
+              className={`px-9 py-3 rounded-xl cursor-pointer hover:bg-[#975553] font-bold shadow-2xl ${
                 isSubmitting
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-[#C3423F] text-white"

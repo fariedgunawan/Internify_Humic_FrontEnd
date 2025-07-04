@@ -7,8 +7,12 @@ import delkano from "../assets/delkano.jpeg";
 import reinhard from "../assets/reinhard.jpeg";
 import kakraya from "../assets/kakraya.png";
 import Footer from "../Layout/Footer";
+import { useEffect } from "react";
 
 const OurDeveloper = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="body-of-developer min-h-screen bg-[#F8F9FA] ">
       {/* Navbar Section */}

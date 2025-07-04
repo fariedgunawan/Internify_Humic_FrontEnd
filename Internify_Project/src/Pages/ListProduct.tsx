@@ -83,7 +83,7 @@ const ListProduct = () => {
           <div className="title-container flex flex-row justify-between items-center mb-[50px]">
             <h2 className="text-[24px] font-semibold">Daftar Project</h2>
             <button
-              className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] text-white font-semibold"
+              className="px-[20px] py-[10px] rounded-xl bg-[#1F4A92] hover:bg-[#677c9f] cursor-pointer text-white font-semibold"
               onClick={() => navigate("/AddProductHumic")}
             >
               Tambah
@@ -108,9 +108,8 @@ const ListProduct = () => {
                     </td>
                     <td className="px-6 py-3 flex gap-2">
                       {/* Tombol View */}
-                      {/* Tombol View */}
                       <button
-                        className="bg-[#3BE21D] text-white p-2 rounded-xl"
+                        className="bg-[#3BE21D] cursor-pointer text-white p-2 rounded-xl"
                         onClick={() =>
                           window.open(`/DetailsProduct/${project.id}`, "_blank")
                         }
@@ -138,7 +137,7 @@ const ListProduct = () => {
 
                       {/* Tombol Edit */}
                       <button
-                        className="bg-[#2CAEFF] text-white p-2 rounded-xl"
+                        className="bg-[#2CAEFF] text-white cursor-pointer p-2 rounded-xl"
                         onClick={() =>
                           navigate(`/EditProductHumic/${project.id}`)
                         }
@@ -166,7 +165,7 @@ const ListProduct = () => {
 
                       {/* Tombol Hapus */}
                       <button
-                        className="bg-[#E41E1E] text-white p-2 rounded-xl"
+                        className="bg-[#E41E1E] text-white cursor-pointer p-2 rounded-xl"
                         onClick={() => handleDelete(project.id)}
                       >
                         <svg
