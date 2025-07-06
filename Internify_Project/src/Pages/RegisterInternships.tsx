@@ -3,12 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const RegisterInternships = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); // id_lowongan_magang
+  const { id } = useParams();
   const [posisi, setPosisi] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const [formData, setFormData] = useState<{
     nama_depan: string;
@@ -42,8 +44,12 @@ const RegisterInternships = () => {
       return;
     }
 
+    if (!recaptchaToken) {
+      alert("Harap selesaikan reCAPTCHA terlebih dahulu.");
+      return;
+    }
+
     const data = new FormData();
-    // Append form fields...
     data.append("nama_depan", formData.nama_depan);
     data.append("nama_belakang", formData.nama_belakang);
     data.append("email", formData.email);
@@ -54,8 +60,9 @@ const RegisterInternships = () => {
     data.append("relevant_skills", formData.relevant_skills);
     if (formData.cv) data.append("cv", formData.cv);
     if (formData.portofolio) data.append("portofolio", formData.portofolio);
+    data.append("g-recaptcha-response", recaptchaToken);
 
-    setIsSubmitting(true); // Start loading
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post(
@@ -79,7 +86,7 @@ const RegisterInternships = () => {
         console.error("Unexpected error:", error);
       }
     } finally {
-      setIsSubmitting(false); // Stop loading
+      setIsSubmitting(false);
     }
   };
 
@@ -210,9 +217,7 @@ const RegisterInternships = () => {
                 setFormData({ ...formData, relevant_skills: e.target.value })
               }
             />
-            <p className="text-sm text-[#C3423F] mt-1">
-              *separate with commas
-            </p>
+            <p className="text-sm text-[#C3423F] mt-1">*separate with commas</p>
           </div>
 
           <div>
@@ -280,7 +285,12 @@ const RegisterInternships = () => {
             </p>
           </div>
 
-          <div className="md:col-span-2 text-center mt-[40px]">
+          <div className="md:col-span-2 flex flex-col justify-center items-center text-center gap-10 mt-[40px]">
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={(token) => setRecaptchaToken(token)}
+            />
+
             <button
               type="submit"
               disabled={isSubmitting}
