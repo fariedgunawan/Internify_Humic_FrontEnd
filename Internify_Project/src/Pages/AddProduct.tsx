@@ -18,6 +18,8 @@ const AddProduct = () => {
   const [durasiAkhir, setDurasiAkhir] = useState("");
   const [jobdesk, setJobdesk] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [isCustomKelompok, setIsCustomKelompok] = useState(false);
+  const [customKelompok, setCustomKelompok] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,11 +30,18 @@ const AddProduct = () => {
         }/lowongan-magang-api/get/kelompok-all`
       )
       .then((res) => {
-        setKelompokOptions(res.data.data);
-        setKelompok(res.data.data[0] || "");
+        const data = res.data.data;
+        setKelompokOptions(data);
+        if (data.length > 0) {
+          setKelompok(data[0]);
+          setIsCustomKelompok(false);
+        } else {
+          setIsCustomKelompok(true);
+        }
       })
       .catch((err) => {
         console.error("Gagal memuat kelompok peminatan:", err);
+        setIsCustomKelompok(true);
       });
   }, []);
 
@@ -49,7 +58,12 @@ const AddProduct = () => {
 
     const formData = new FormData();
     formData.append("posisi", posisi);
-    formData.append("kelompok_peminatan", kelompok);
+    formData.append(
+      "kelompok_peminatan",
+      isCustomKelompok || kelompokOptions.length === 0
+        ? customKelompok
+        : kelompok
+    );
     formData.append("lokasi", lokasi);
     formData.append("jobdesk", jobdesk);
     formData.append("kualifikasi", getRandomKualifikasi());
@@ -121,17 +135,36 @@ const AddProduct = () => {
                 <label className="text-sm font-medium">
                   Kategori Internship
                 </label>
-                <select
-                  className="border border-gray-300 rounded-lg p-3"
-                  value={kelompok}
-                  onChange={(e) => setKelompok(e.target.value)}
-                >
-                  {kelompokOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+
+                {/* Jika ada data dari API */}
+                {kelompokOptions.length > 0 && (
+                  <select
+                    className="border border-gray-300 rounded-lg p-3"
+                    value={kelompok}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setKelompok(value);
+                      setIsCustomKelompok(value === "lainnya");
+                    }}
+                  >
+                    {kelompokOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                    <option value="lainnya">Lainnya (masukan manual)</option>
+                  </select>
+                )}
+
+                {(isCustomKelompok || kelompokOptions.length === 0) && (
+                  <input
+                    type="text"
+                    className="border border-gray-300 rounded-lg p-3 mt-2"
+                    placeholder="Tulis kategori internship baru"
+                    value={customKelompok}
+                    onChange={(e) => setCustomKelompok(e.target.value)}
+                  />
+                )}
               </div>
 
               <div className="flex flex-col gap-2">
