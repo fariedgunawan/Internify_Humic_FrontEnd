@@ -61,7 +61,7 @@ const ListLowongan = () => {
       fetchLowongan();
     } catch (err) {
       console.error("Gagal menghapus:", err);
-      alert("Gagal menghapus lowongan.");
+      alert("Gagal menghapus lowongan pastikan tidak ada data pelamar yang sedang melamar.");
     }
   };
 

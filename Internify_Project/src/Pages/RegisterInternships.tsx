@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 import axios from "axios";
 import Footer from "../Layout/Footer";
 import Navbar from "../Layout/Navbar";
@@ -9,19 +10,9 @@ const RegisterInternships = () => {
   const { id } = useParams(); // id_lowongan_magang
   const [posisi, setPosisi] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
-  const [formData, setFormData] = useState<{
-    nama_depan: string;
-    nama_belakang: string;
-    email: string;
-    kontak: string;
-    jurusan: string;
-    angkatan: string;
-    motivasi: string;
-    relevant_skills: string;
-    cv: File | null;
-    portofolio: File | null;
-  }>({
+  const [formData, setFormData] = useState({
     nama_depan: "",
     nama_belakang: "",
     email: "",
@@ -30,8 +21,8 @@ const RegisterInternships = () => {
     angkatan: "",
     motivasi: "",
     relevant_skills: "",
-    cv: null,
-    portofolio: null,
+    cv: null as File | null,
+    portofolio: null as File | null,
   });
 
   const handleSubmit = async (e: any) => {
@@ -39,6 +30,11 @@ const RegisterInternships = () => {
 
     if (!formData.cv || !formData.portofolio) {
       alert("CV dan Portofolio wajib diunggah!");
+      return;
+    }
+
+    if (!recaptchaToken) {
+      alert("Silakan verifikasi reCAPTCHA terlebih dahulu.");
       return;
     }
 
@@ -51,6 +47,7 @@ const RegisterInternships = () => {
     data.append("angkatan", formData.angkatan);
     data.append("motivasi", formData.motivasi);
     data.append("relevant_skills", formData.relevant_skills);
+    data.append("g-recaptcha-response", recaptchaToken); // reCAPTCHA token
     if (formData.cv) data.append("cv", formData.cv);
     if (formData.portofolio) data.append("portofolio", formData.portofolio);
 
@@ -74,11 +71,12 @@ const RegisterInternships = () => {
           "Error submitting form:",
           error.response?.data || error.message
         );
+        alert("Gagal mengirim form. Silakan coba lagi.");
       } else {
         console.error("Unexpected error:", error);
       }
     } finally {
-      setIsSubmitting(false); 
+      setIsSubmitting(false);
     }
   };
 
@@ -90,11 +88,8 @@ const RegisterInternships = () => {
             import.meta.env.VITE_API_BASE_URL
           }/lowongan-magang-api/get/id/${id}`
         );
-
         const posisiValue = response.data?.data?.posisi;
-        if (posisiValue) {
-          setPosisi(posisiValue);
-        }
+        if (posisiValue) setPosisi(posisiValue);
       } catch (error) {
         console.error("Gagal mengambil data posisi:", error);
       }
@@ -209,9 +204,7 @@ const RegisterInternships = () => {
                 setFormData({ ...formData, relevant_skills: e.target.value })
               }
             />
-            <p className="text-sm text-[#C3423F] mt-1">
-              *separate with commas
-            </p>
+            <p className="text-sm text-[#C3423F] mt-1">*separate with commas</p>
           </div>
 
           <div>
@@ -279,7 +272,17 @@ const RegisterInternships = () => {
             </p>
           </div>
 
-          <div className="md:col-span-2 text-center mt-[40px]">
+          <div className="md:col-span-2 flex flex-col items-center justify-center gap-10 text-center mt-[40px]">
+            {/* Sisipkan reCAPTCHA */}
+
+            <ReCAPTCHA
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+              onChange={(token) => {
+                setRecaptchaToken(token);
+              }}
+              onExpired={() => setRecaptchaToken(null)}
+            />
+
             <button
               type="submit"
               disabled={isSubmitting}
