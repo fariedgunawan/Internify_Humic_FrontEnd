@@ -72,7 +72,6 @@ const DetailsProduct = () => {
           dangerouslySetInnerHTML={{ __html: product.deskripsi }}
         />
 
-        {/* Optional: Link to Project */}
         {product.link_project && (
           <a
             href={product.link_project}

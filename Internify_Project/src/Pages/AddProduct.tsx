@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SidebarAdmin from "../Layout/SidebarAdmin";
 import NavbarAdmin from "../Layout/NavbarAdmin";
 import "froala-editor/js/plugins.pkgd.min.js";
@@ -17,6 +18,7 @@ const AddProduct = () => {
   const [durasiAkhir, setDurasiAkhir] = useState("");
   const [jobdesk, setJobdesk] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -69,6 +71,7 @@ const AddProduct = () => {
         }
       );
       alert("Internship berhasil ditambahkan!");
+      navigate("/LowonganList");
     } catch (error) {
       console.error("Error adding internship:", error);
       alert("Gagal menambahkan internship.");
@@ -150,7 +153,7 @@ const AddProduct = () => {
                   className="border border-gray-300 rounded-lg p-3"
                   value={lokasi}
                   onChange={(e) => setLokasi(e.target.value)}
-                  placeholder="Bandung"
+                  placeholder="Onsite,Jakarta"
                 />
               </div>
 

@@ -43,7 +43,6 @@ const RegisterInternships = () => {
     }
 
     const data = new FormData();
-    // Append form fields...
     data.append("nama_depan", formData.nama_depan);
     data.append("nama_belakang", formData.nama_belakang);
     data.append("email", formData.email);
@@ -55,7 +54,7 @@ const RegisterInternships = () => {
     if (formData.cv) data.append("cv", formData.cv);
     if (formData.portofolio) data.append("portofolio", formData.portofolio);
 
-    setIsSubmitting(true); // Start loading
+    setIsSubmitting(true);
 
     try {
       const response = await axios.post(
@@ -79,7 +78,7 @@ const RegisterInternships = () => {
         console.error("Unexpected error:", error);
       }
     } finally {
-      setIsSubmitting(false); // Stop loading
+      setIsSubmitting(false); 
     }
   };
 

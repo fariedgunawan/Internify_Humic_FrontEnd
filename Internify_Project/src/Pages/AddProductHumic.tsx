@@ -6,12 +6,15 @@ import "froala-editor/css/froala_editor.pkgd.min.css";
 import "froala-editor/css/froala_style.min.css";
 import FroalaEditor from "react-froala-wysiwyg";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddProductHumic = () => {
   const [namaProject, setNamaProject] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
   const [linkProject, setLinkProject] = useState("");
   const [image, setImage] = useState<File | null>(null);
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     const token = document.cookie
@@ -42,6 +45,7 @@ const AddProductHumic = () => {
         }
       );
       alert("Project berhasil ditambahkan!");
+      navigate("/ProductList");
     } catch (error) {
       console.error("Gagal menambahkan project:", error);
       alert("Gagal menambahkan project.");
