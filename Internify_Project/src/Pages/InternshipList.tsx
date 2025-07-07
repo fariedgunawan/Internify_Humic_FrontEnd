@@ -19,23 +19,31 @@ const InternshipList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
+    const fetchApplications = () => {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("token="))
+        ?.split("=")[1];
 
-    axios
-      .get(`${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/get`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setApplications(res.data.data || []);
-      })
-      .catch((err) => {
-        console.error("Gagal mengambil data lamaran:", err);
-      });
+      axios
+        .get(`${import.meta.env.VITE_API_BASE_URL}/lamaran-magang-api/get`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setApplications(res.data.data || []);
+        })
+        .catch((err) => {
+          console.error("Gagal mengambil data lamaran:", err);
+        });
+    };
+
+    fetchApplications();
+
+    const interval = setInterval(fetchApplications, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const getStatusStyle = (status: string) => {

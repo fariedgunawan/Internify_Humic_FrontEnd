@@ -26,7 +26,6 @@ const Internships = () => {
   const [categories, setCategories] = useState<string[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  // Fetch kategori peminatan
   useEffect(() => {
     axios
       .get(
@@ -71,6 +70,12 @@ const Internships = () => {
     };
 
     fetchInternships();
+
+    const interval = setInterval(() => {
+      fetchInternships();
+    }, 15000);
+
+    return () => clearInterval(interval);
   }, [selectedCategory]);
 
   const filteredInternships = internships.filter(
