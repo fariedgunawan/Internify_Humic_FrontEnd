@@ -7,7 +7,7 @@ import Navbar from "../Layout/Navbar";
 
 const RegisterInternships = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); // id_lowongan_magang
+  const { id } = useParams();
   const [posisi, setPosisi] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
@@ -18,7 +18,6 @@ const RegisterInternships = () => {
     email: "",
     kontak: "",
     jurusan: "",
-    angkatan: "",
     motivasi: "",
     relevant_skills: "",
     cv: null as File | null,
@@ -40,14 +39,15 @@ const RegisterInternships = () => {
 
     const data = new FormData();
     data.append("nama_depan", formData.nama_depan);
-    data.append("nama_belakang", formData.nama_belakang);
+    if (formData.nama_belakang.trim() !== "") {
+      data.append("nama_belakang", formData.nama_belakang);
+    }
     data.append("email", formData.email);
     data.append("kontak", formData.kontak);
     data.append("jurusan", formData.jurusan);
-    data.append("angkatan", formData.angkatan);
     data.append("motivasi", formData.motivasi);
     data.append("relevant_skills", formData.relevant_skills);
-    data.append("g-recaptcha-response", recaptchaToken); // reCAPTCHA token
+    data.append("g-recaptcha-response", recaptchaToken);
     if (formData.cv) data.append("cv", formData.cv);
     if (formData.portofolio) data.append("portofolio", formData.portofolio);
 
@@ -139,6 +139,7 @@ const RegisterInternships = () => {
                 setFormData({ ...formData, nama_belakang: e.target.value })
               }
             />
+            <p className="text-sm text-[#C3423F] mt-1">*not required</p>
           </div>
 
           <div>
@@ -152,6 +153,7 @@ const RegisterInternships = () => {
                 setFormData({ ...formData, email: e.target.value })
               }
             />
+            <p className="text-sm text-[#C3423F] mt-1">*email or SSO</p>
           </div>
 
           <div>
@@ -176,19 +178,6 @@ const RegisterInternships = () => {
               value={formData.jurusan}
               onChange={(e) =>
                 setFormData({ ...formData, jurusan: e.target.value })
-              }
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-bold">Angkatan</label>
-            <input
-              type="number"
-              className="w-full border-2 border-[#A9B5C0] rounded-md p-2 mt-3 text-black"
-              placeholder="2022"
-              value={formData.angkatan}
-              onChange={(e) =>
-                setFormData({ ...formData, angkatan: e.target.value })
               }
             />
           </div>
