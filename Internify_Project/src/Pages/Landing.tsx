@@ -17,6 +17,7 @@ const Landing = () => {
     id: string;
     posisi: string;
     image_path: string;
+    status_lowongan: string;
   };
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -166,30 +167,51 @@ const Landing = () => {
         </h2>
 
         <div className="card-container mt-[110px] flex flex-wrap items-center justify-center gap-10 sm:gap-[60px] xl:gap-[80px] mx-3 sm:mx-[10px]">
-          {internships.map((intern) => (
-            <div
-              key={intern.id}
-              className="relative w-64 h-64 rounded-xl overflow-hidden shadow-lg cursor-pointer transform transition duration-300 hover:scale-105"
-              onClick={() => navigate(`/Details/${intern.id}`)}
-            >
+          {internships.map((intern) => {
+            const isClosed = intern.status_lowongan === "ditutup";
+
+            return (
               <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${import.meta.env.VITE_API_BASE_URL}${
-                    intern.image_path
-                  })`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
+                key={intern.id}
+                className={`relative w-64 h-64 rounded-xl overflow-hidden shadow-lg transform transition duration-300 ${
+                  isClosed
+                    ? "cursor-not-allowed grayscale"
+                    : "cursor-pointer hover:scale-105"
+                }`}
+                onClick={() => {
+                  if (!isClosed) {
+                    navigate(`/Details/${intern.id}`);
+                  }
                 }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60" />
-              <div className="relative z-10 flex flex-col justify-end h-full p-4 text-white">
-                <div className="font-semibold text-[20px] leading-[30px]">
-                  {intern.posisi}
+              >
+                {/* Background image */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${import.meta.env.VITE_API_BASE_URL}${
+                      intern.image_path
+                    })`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-60" />
+
+                {/* Text content */}
+                <div
+                  className={`relative z-10 flex flex-col justify-end h-full p-4 ${
+                    isClosed ? "text-gray-400" : "text-white"
+                  }`}
+                >
+                  <div className="font-semibold text-[20px] leading-[30px]">
+                    {intern.posisi}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
